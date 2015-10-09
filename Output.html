@@ -1,0 +1,1064 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/QAPage">
+ <head> 
+  <title>php - SignatureDoesNotMatch - Amazon S3 API - Stack Overflow</title> 
+  <link rel="shortcut icon" href="//cdn.sstatic.net/stackoverflow/img/favicon.ico?v=4f32ecc8f43d"> 
+  <link rel="apple-touch-icon image_src" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a"> 
+  <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml"> 
+  <meta name="twitter:card" content="summary"> 
+  <meta name="twitter:domain" content="stackoverflow.com"> 
+  <meta property="og:type" content="website"> 
+  <meta property="og:image" itemprop="image primaryImageOfPage" content="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded&amp;a"> 
+  <meta name="twitter:title" property="og:title" itemprop="title name" content="SignatureDoesNotMatch - Amazon S3 API"> 
+  <meta name="twitter:description" property="og:description" itemprop="description" content="I am using a PHP class for Amazon S3 and CloudFront - Link. But when I try to upload a file into a bucket, I get this error:
+
+
+  [SignatureDoesNotMatch] The request signature we calculated does not..."> 
+  <meta property="og:url" content="http://stackoverflow.com/questions/10281557/signaturedoesnotmatch-amazon-s3-api"> 
+  <link rel="canonical" href="http://stackoverflow.com/questions/10281557/signaturedoesnotmatch-amazon-s3-api"> 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+  <script src="//cdn.sstatic.net/Js/stub.en.js?v=8397200bbf17"></script> 
+  <link rel="stylesheet" type="text/css" href="//cdn.sstatic.net/stackoverflow/all.css?v=f29b1dcb2836"> 
+  <link rel="alternate" type="application/atom+xml" title="Feed for question 'SignatureDoesNotMatch - Amazon S3 API'" href="/feeds/question/10281557"> 
+  <meta name="twitter:app:country" content="US"> 
+  <meta name="twitter:app:name:iphone" content="Stack Exchange iOS"> 
+  <meta name="twitter:app:id:iphone" content="871299723"> 
+  <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/10281557/signaturedoesnotmatch-amazon-s3-api"> 
+  <meta name="twitter:app:name:ipad" content="Stack Exchange iOS"> 
+  <meta name="twitter:app:id:ipad" content="871299723"> 
+  <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/10281557/signaturedoesnotmatch-amazon-s3-api"> 
+  <meta name="twitter:app:name:googleplay" content="Stack Exchange Android"> 
+  <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/10281557/signaturedoesnotmatch-amazon-s3-api"> 
+  <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin"> 
+  <script>
+        
+            StackExchange.ready(function () {
+                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:10281557});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '10281557');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text'); });
+
+            });
+        </script> 
+  <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","serverTime":1444410317,"networkMetaHostname":"meta.stackexchange.com","routeName":"Questions/Show","styleCode":true,"enableUserHovercards":true,"snippets":{"enabled":true,"domain":"stacksnippets.net"},"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"globalAuthDisabled":true,"nonAsciiTags":true,"enableSocialMediaInSharePopup":true},"user":{"fkey":"4e37581a3e8af83c61352270d7360f8d","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"ab":{"hero_signup_button":{"v":"b","g":1},"anon_popups":{"v":"d","g":2},"profile_integration_signup":{"v":"b","g":1}}}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"5df3f1f48512","js/moderator.en.js":"fd03a196f8b2","js/full-anon.en.js":"ee64eb4f9bdf","js/full.en.js":"acf02f124a5a","js/wmd.en.js":"25a0891dec79","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"6aa70862e9c3","js/help.en.js":"cf0985095088","js/tageditor.en.js":"ffaa9d76d675","js/tageditornew.en.js":"af384bb3185f","js/inline-tag-editing.en.js":"de80429b1816","js/revisions.en.js":"441881c1cda9","js/review.en.js":"e7d317a6d4bd","js/tagsuggestions.en.js":"d1ff9b84abe5","js/post-validation.en.js":"ad628a928980","js/explore-qlist.en.js":"a5d8f71511e1","js/events.en.js":"e06a6f0c0f78","js/keyboard-shortcuts.en.js":"7482fdaff4bd","js/external-editor.en.js":"12f946176279","js/external-editor.en.js":"12f946176279","js/snippet-javascript.en.js":"a39adff9cc0c","js/snippet-javascript-codemirror.en.js":"b9e2a3c62264"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script> 
+  <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script> 
+ </head> 
+ <body class="question-page new-topbar"> 
+  <noscript>
+   <div id="noscript-padding"></div>
+  </noscript> 
+  <div id="notify-container"></div> 
+  <div id="overlay-header"></div> 
+  <div id="custom-header"></div> 
+  <div class="topbar"> 
+   <div class="topbar-wrapper"> 
+    <div class="js-topbar-dialog-corral"> 
+     <div class="topbar-dialog siteSwitcher-dialog dno"> 
+      <div class="header"> 
+       <h3><a href="//stackoverflow.com">current community</a></h3> 
+      </div> 
+      <div class="modal-content current-site-container"> 
+       <ul class="current-site"> 
+        <li> 
+         <div class="related-links"> 
+          <a href="http://chat.stackoverflow.com" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a> 
+         </div> <a href="//stackoverflow.com" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="
+        site_switcher.click({ item_type:3 })"> 
+          <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div> Stack Overflow </a> </li> 
+        <li class="related-site"> 
+         <div class="L-shaped-icon-container"> 
+          <span class="L-shaped-icon"></span> 
+         </div> <a href="http://meta.stackoverflow.com" class="site-link js-gps-track" data-id="552" data-gps-track="
+            site.switch({ target_site:552, item_type:3 }),
+        site_switcher.click({ item_type:4 })"> 
+          <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div> Meta Stack Overflow </a> </li> 
+        <li class="related-site"> 
+         <div class="L-shaped-icon-container"> 
+          <span class="L-shaped-icon"></span> 
+         </div> <a class="site-link js-gps-track" href="//careers.stackoverflow.com?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=multicollider" data-gps-track="site_switcher.click({ item_type:9 })"> 
+          <div class="site-icon favicon favicon-careers" title="Stack Overflow Careers"></div> Stack Overflow Careers </a> </li> 
+       </ul> 
+      </div> 
+      <div class="header" id="your-communities-header"> 
+       <h3> your communities </h3> 
+      </div> 
+      <div class="modal-content" id="your-communities-section"> 
+       <div class="call-to-login"> 
+        <a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or 
+        <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list. 
+       </div> 
+      </div> 
+      <div class="header"> 
+       <h3><a href="//stackexchange.com/sites">more stack exchange communities</a></h3> 
+       <a href="http://blog.stackoverflow.com" class="fr">company blog</a> 
+      </div> 
+      <div class="modal-content"> 
+       <div class="child-content"></div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="network-items"> 
+     <a href="//stackexchange.com" class="topbar-icon icon-site-switcher yes-hover js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 150 Stack Exchange sites"> <span class="hidden-text">Stack Exchange</span> </a> 
+     <a href="#" class="topbar-icon icon-inbox yes-hover js-inbox-button" title="Recent inbox messages"> <span class="hidden-text">Inbox</span> <span class="unread-count" style="display:none"></span> </a> 
+     <a href="#" class="topbar-icon icon-achievements yes-hover js-achievements-button " data-unread-class="" title="Recent achievements: reputation, badges, and privileges earned"> <span class="hidden-text">Reputation and Badges</span> <span class="unread-count" style="display:none"> </span> </a> 
+    </div> 
+    <div class="topbar-links"> 
+     <div class="links-container"> 
+      <span class="topbar-menu-links"> <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api" class="login-link">sign up</a> <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api" class="login-link">log in</a> <a href="/tour">tour</a> <a href="#" class="icon-help js-help-button" title="Help Center and other resources"> help <span class="triangle"></span> </a> 
+       <div class="topbar-dialog help-dialog js-help-dialog dno"> 
+        <div class="modal-content"> 
+         <ul> 
+          <li> <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })"> Tour <span class="item-summary"> Start here for a quick overview of the site </span> </a> </li> 
+          <li> <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })"> Help Center <span class="item-summary"> Detailed answers to any questions you might have </span> </a> </li> 
+          <li> <a href="//meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })"> Meta <span class="item-summary"> Discuss the workings and policies of this site </span> </a> </li> 
+         </ul> 
+        </div> 
+       </div> <a href="//careers.stackoverflow.com?utm_source=stackoverflow.com&amp;utm_medium=site-ui&amp;utm_campaign=anon-topbar">stack overflow careers</a> </span> 
+     </div> 
+     <div class="search-container"> 
+      <form id="search" action="/search" method="get" autocomplete="off"> 
+       <input name="q" type="text" placeholder="search" value="" tabindex="1" autocomplete="off" maxlength="240"> 
+      </form> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <script>
+        StackExchange.ready(function() { StackExchange.topbar.init(); });
+    </script> 
+  <div class="container"> 
+   <div id="header"> 
+    <br class="cbt"> 
+    <div id="hlogo"> 
+     <a href="/"> Stack Overflow </a> 
+    </div> 
+    <div id="hmenus"> 
+     <div class="nav mainnavs"> 
+      <ul> 
+       <li class="youarehere"><a id="nav-questions" href="/questions">Questions</a></li> 
+       <li><a id="nav-tags" href="/tags">Tags</a></li> 
+       <li><a id="nav-users" href="/users">Users</a></li> 
+       <li><a id="nav-badges" href="/help/badges">Badges</a></li> 
+       <li><a id="nav-unanswered" href="/unanswered">Unanswered</a></li> 
+      </ul> 
+     </div> 
+     <div class="nav askquestion"> 
+      <ul> 
+       <li> <a id="nav-askquestion" href="/questions/ask">Ask Question</a> </li> 
+      </ul> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="content" class="snippet-hidden"> 
+    <div itemscope itemtype="http://schema.org/Question"> 
+     <link itemprop="image" href="//cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a"> 
+     <!--googleoff: all--> 
+     <div id="herobox-mini"> 
+      <div id="hero-content"> 
+       <span id="controls"> <a href="/users/signup?ssrc=hero&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api" id="tell-me-more" class="button">Sign up</a> <span id="close"><a title="click to dismiss">×</a></span> </span> 
+       <div id="blurb">
+         Stack Overflow is a question and answer site for professional and enthusiast programmers. It's 100% free. 
+       </div> 
+      </div> 
+      <script>
+        StackExchange.ready(function() {
+            var clickSource = $("body").attr("class") + '-mini';
+            var location = 0;
+            if ($("body").hasClass("questions-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("question-page")) {
+                clickSource = 'questionpagemini';
+                location = 2;
+            } else if ($("body").hasClass("home-page")) {
+                clickSource = 'homepagemini';
+                location = 4;
+            }
+
+            $('#tell-me-more').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+                });
+            });
+            $('#herobox-mini #close').click(function () {
+                StackExchange.using("gps", function () {
+                    StackExchange.gps.track("hero.action", { hero_action_type: "close", location: location }, true);
+                });
+                $.cookie("hero", "none", { path: "/", expires: 365 });
+                var $hero = $("#herobox-mini");
+                $hero.slideUp('fast', function () { $hero.remove(); });
+                return false;
+            });
+        });
+    </script> 
+     </div> 
+     <!--googleon: all--> 
+     <div id="question-header"> 
+      <h1 itemprop="name"><a href="/questions/10281557/signaturedoesnotmatch-amazon-s3-api" class="question-hyperlink">SignatureDoesNotMatch - Amazon S3 API</a></h1> 
+     </div> 
+     <div id="mainbar"> 
+      <div class="question" data-questionid="10281557" id="question"> 
+       <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1422102376",4).setZone(43); });
+            </script> 
+       <div class="everyonelovesstackoverflow" id="adzerk1422102376"> 
+       </div> 
+       <table> 
+        <tbody>
+         <tr> 
+          <td class="votecell"> 
+           <div class="vote"> 
+            <input type="hidden" name="_id_" value="10281557"> 
+            <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a> 
+            <span itemprop="upvoteCount" class="vote-count-post ">4</span> 
+            <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a> 
+            <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a> 
+            <div class="favoritecount">
+             <b>1</b>
+            </div> 
+           </div> </td> 
+          <td class="postcell"> 
+           <div> 
+            <div class="post-text" itemprop="text"> 
+             <p>I am using a PHP class for Amazon S3 and CloudFront - <a href="https://github.com/tpyo/amazon-s3-php-class" rel="nofollow" title="Link">Link</a>. But when I try to upload a file into a bucket, I get this error:</p> 
+             <blockquote> 
+              <p>[SignatureDoesNotMatch] The request signature we calculated does not match the signature you provided. Check your key and signing method.</p> 
+             </blockquote> 
+             <p>How to fix it?</p> 
+             <p>Thanks.</p> 
+            </div> 
+            <div class="post-taglist"> 
+             <a href="/questions/tagged/php" class="post-tag" title="show questions tagged 'php'" rel="tag">php</a> 
+             <a href="/questions/tagged/file-upload" class="post-tag" title="show questions tagged 'file-upload'" rel="tag">file-upload</a> 
+             <a href="/questions/tagged/upload" class="post-tag" title="show questions tagged 'upload'" rel="tag">upload</a> 
+             <a href="/questions/tagged/amazon-s3" class="post-tag" title="show questions tagged 'amazon-s3'" rel="tag">amazon-s3</a> 
+             <a href="/questions/tagged/amazon" class="post-tag" title="show questions tagged 'amazon'" rel="tag">amazon</a> 
+            </div> 
+            <table class="fw"> 
+             <tbody>
+              <tr> 
+               <td class="vt"> 
+                <div class="post-menu">
+                 <a href="/q/10281557" title="short permalink to this question" class="short-link" id="link-post-10281557">share</a>
+                 <span class="lsep">|</span>
+                 <a href="/posts/10281557/edit" class="suggest-edit-post" title="">improve this question</a>
+                </div> </td> 
+               <td class="post-signature owner"> 
+                <div class="user-info "> 
+                 <div class="user-action-time">
+                   asked 
+                  <span title="2012-04-23 13:31:30Z" class="relativetime">Apr 23 '12 at 13:31</span> 
+                 </div> 
+                 <div class="user-gravatar32"> 
+                  <a href="/users/1349677/roman-nazarkin">
+                   <div class="gravatar-wrapper-32">
+                    <img src="https://www.gravatar.com/avatar/14b93eb98847ad54e73831aca3060d5a?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32">
+                   </div></a> 
+                 </div> 
+                 <div class="user-details"> 
+                  <a href="/users/1349677/roman-nazarkin">Roman Nazarkin</a>
+                  <br> 
+                  <span class="reputation-score" title="reputation score " dir="ltr">549</span>
+                  <span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span>
+                  <span title="6 silver badges"><span class="badge2"></span><span class="badgecount">6</span></span>
+                  <span title="17 bronze badges"><span class="badge3"></span><span class="badgecount">17</span></span> 
+                 </div> 
+                </div> </td> 
+              </tr> 
+             </tbody>
+            </table> 
+           </div> </td> 
+         </tr> 
+         <tr> 
+          <td class="votecell"></td> 
+          <td> 
+           <div id="comments-10281557" class="comments  dno"> 
+            <table> 
+             <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"> 
+              <tr>
+               <td></td>
+               <td></td>
+              </tr> 
+             </tbody> 
+            </table> 
+           </div> 
+           <div id="comments-link-10281557" data-rep="50" data-anon="true"> 
+            <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a>
+            <span class="js-link-separator dno">&nbsp;|&nbsp;</span> 
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a> 
+           </div> </td> 
+         </tr> 
+        </tbody>
+       </table> 
+      </div> 
+      <div id="answers"> 
+       <a name="tab-top"></a> 
+       <div id="answers-header"> 
+        <div class="subheader answers-subheader"> 
+         <h2> 2 Answers <span style="display:none;" itemprop="answerCount">2</span> </h2> 
+         <div> 
+          <div id="tabs"> 
+           <a href="/questions/10281557/signaturedoesnotmatch-amazon-s3-api?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active">active</a> 
+           <a href="/questions/10281557/signaturedoesnotmatch-amazon-s3-api?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest">oldest</a> 
+           <a class="youarehere" href="/questions/10281557/signaturedoesnotmatch-amazon-s3-api?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes">votes</a> 
+          </div> 
+         </div> 
+        </div> 
+       </div> 
+       <a name="10432891"></a> 
+       <div id="answer-10432891" class="answer" data-answerid="10432891" itemscope itemtype="http://schema.org/Answer"> 
+        <table> 
+         <tbody>
+          <tr> 
+           <td class="votecell"> 
+            <div class="vote"> 
+             <input type="hidden" name="_id_" value="10432891"> 
+             <a class="vote-up-off" title="This answer is useful">up vote</a> 
+             <span itemprop="upvoteCount" class="vote-count-post ">5</span> 
+             <a class="vote-down-off" title="This answer is not useful">down vote</a> 
+            </div> </td> 
+           <td class="answercell"> 
+            <div class="post-text" itemprop="text"> 
+             <p>When you sign up for Amazon, you can create yourself a key pair (Amazon calls those access key ID and secret access key).</p> 
+             <p>Those two are used to sign requests to Amazon's webservices. Amazon re-calculates the signature and compares if it matches the one that was contained in your request. That way the secret access key never needs to be transmitted over the network. </p> 
+             <p>If you get "Signature does not match", it's highly likely you used a wrong secret access key. Can you double-check access key and secret access key to make sure they're correct?</p> 
+            </div> 
+            <table class="fw"> 
+             <tbody>
+              <tr> 
+               <td class="vt"> 
+                <div class="post-menu">
+                 <a href="/a/10432891" title="short permalink to this answer" class="short-link" id="link-post-10432891">share</a>
+                 <span class="lsep">|</span>
+                 <a href="/posts/10432891/edit" class="suggest-edit-post" title="">improve this answer</a>
+                </div> </td> 
+               <td align="right" class="post-signature"> 
+                <div class="user-info "> 
+                 <div class="user-action-time">
+                   answered 
+                  <span title="2012-05-03 13:55:24Z" class="relativetime">May 3 '12 at 13:55</span> 
+                 </div> 
+                 <div class="user-gravatar32"> 
+                  <a href="/users/473467/awendt">
+                   <div class="gravatar-wrapper-32">
+                    <img src="https://www.gravatar.com/avatar/2270d703967bfebb9cb555f85b3bb56b?s=32&amp;d=identicon&amp;r=PG" alt="" width="32" height="32">
+                   </div></a> 
+                 </div> 
+                 <div class="user-details"> 
+                  <a href="/users/473467/awendt">awendt</a>
+                  <br> 
+                  <span class="reputation-score" title="reputation score " dir="ltr">4,084</span>
+                  <span title="12 silver badges"><span class="badge2"></span><span class="badgecount">12</span></span>
+                  <span title="34 bronze badges"><span class="badge3"></span><span class="badgecount">34</span></span> 
+                 </div> 
+                </div> </td> 
+              </tr> 
+             </tbody>
+            </table> </td> 
+          </tr> 
+          <tr> 
+           <td class="votecell"></td> 
+           <td> 
+            <div id="comments-10432891" class="comments "> 
+             <table> 
+              <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"> 
+               <tr id="comment-13751435" class="comment "> 
+                <td> 
+                 <table> 
+                  <tbody> 
+                   <tr> 
+                    <td class=" comment-score"> &nbsp;&nbsp; </td> 
+                    <td> &nbsp; </td> 
+                   </tr> 
+                  </tbody> 
+                 </table> </td> 
+                <td class="comment-text"> 
+                 <div style="display: block;" class="comment-body"> 
+                  <span class="comment-copy">Thanks! How to fix this problem - <a href="http://goo.gl/QTdm4" rel="nofollow">goo.gl/QTdm4</a></span> –&nbsp; 
+                  <a href="/users/1349677/roman-nazarkin" title="549 reputation" class="comment-user owner">Roman Nazarkin</a> 
+                  <span class="comment-date" dir="ltr"><span title="2012-05-16 05:42:28Z" class="relativetime-clean">May 16 '12 at 5:42</span></span> 
+                 </div> </td> 
+               </tr> 
+               <tr id="comment-13753301" class="comment "> 
+                <td> 
+                 <table> 
+                  <tbody> 
+                   <tr> 
+                    <td class=" comment-score"> &nbsp;&nbsp; </td> 
+                    <td> &nbsp; </td> 
+                   </tr> 
+                  </tbody> 
+                 </table> </td> 
+                <td class="comment-text"> 
+                 <div style="display: block;" class="comment-body"> 
+                  <span class="comment-copy">@roman-nazarkin So the issue was the bucket location?</span> –&nbsp; 
+                  <a href="/users/473467/awendt" title="4084 reputation" class="comment-user">awendt</a> 
+                  <span class="comment-date" dir="ltr"><span title="2012-05-16 07:33:17Z" class="relativetime-clean">May 16 '12 at 7:33</span></span> 
+                 </div> </td> 
+               </tr> 
+               <tr id="comment-34586274" class="comment "> 
+                <td class="comment-actions"> 
+                 <table> 
+                  <tbody> 
+                   <tr> 
+                    <td class=" comment-score"> <span title="number of 'useful comment' votes received" class="cool">1</span> </td> 
+                    <td> &nbsp; </td> 
+                   </tr> 
+                  </tbody> 
+                 </table> </td> 
+                <td class="comment-text"> 
+                 <div style="display: block;" class="comment-body"> 
+                  <span class="comment-copy">in my case there was some extra whitespace in the config file/setting which had the secret key, so it was transmitting an extra <code>tab</code> character in the "password", thus invalidating the signature.</span> –&nbsp; 
+                  <a href="/users/1037948/drzaus" title="6705 reputation" class="comment-user">drzaus</a> 
+                  <span class="comment-date" dir="ltr"><span title="2014-03-27 21:05:18Z" class="relativetime-clean">Mar 27 '14 at 21:05</span></span> 
+                 </div> </td> 
+               </tr> 
+               <tr id="comment-53490365" class="comment "> 
+                <td> 
+                 <table> 
+                  <tbody> 
+                   <tr> 
+                    <td class=" comment-score"> &nbsp;&nbsp; </td> 
+                    <td> &nbsp; </td> 
+                   </tr> 
+                  </tbody> 
+                 </table> </td> 
+                <td class="comment-text"> 
+                 <div style="display: block;" class="comment-body"> 
+                  <span class="comment-copy">I had this same issue. It turned out the debugging tool I was using was mistakingly sending GET requests when the signature specified POST. This threw me off to thinking something was wrong with my signature encodings. Dumb mistake took up almost a day of trial and error.</span> –&nbsp; 
+                  <a href="/users/4253799/robert-oliveira" title="59 reputation" class="comment-user">Robert Oliveira</a> 
+                  <span class="comment-date" dir="ltr"><span title="2015-09-28 16:09:10Z" class="relativetime-clean">Sep 28 at 16:09</span></span> 
+                 </div> </td> 
+               </tr> 
+              </tbody> 
+             </table> 
+            </div> 
+            <div id="comments-link-10432891" data-rep="50" data-anon="true"> 
+             <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a>
+             <span class="js-link-separator dno">&nbsp;|&nbsp;</span> 
+             <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a> 
+            </div> </td> 
+          </tr> 
+         </tbody>
+        </table> 
+       </div> 
+       <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk2115708467",4).setZone(44); });
+            </script> 
+       <div class="everyonelovesstackoverflow" id="adzerk2115708467"> 
+       </div> 
+       <a name="30600664"></a> 
+       <div id="answer-30600664" class="answer" data-answerid="30600664" itemscope itemtype="http://schema.org/Answer"> 
+        <table> 
+         <tbody>
+          <tr> 
+           <td class="votecell"> 
+            <div class="vote"> 
+             <input type="hidden" name="_id_" value="30600664"> 
+             <a class="vote-up-off" title="This answer is useful">up vote</a> 
+             <span itemprop="upvoteCount" class="vote-count-post ">1</span> 
+             <a class="vote-down-off" title="This answer is not useful">down vote</a> 
+            </div> </td> 
+           <td class="answercell"> 
+            <div class="post-text" itemprop="text"> 
+             <p>Personally I received this error because of the characters that were in my meta data.</p> 
+             <p>The problematic character was the "–" chracter which is "\u2013" in unicode and different to "-".</p> 
+             <pre><code>$result = $s3-&gt;putObject(array(
+    'Bucket'       =&gt; $bucket,
+    'Key'          =&gt; $keyname,
+    'Metadata' =&gt; [
+        'name' =&gt; 'Terminology – Blah'
+    ]
+));
+</code></pre> 
+             <p>A note from the documentation <strong><a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#UserMetadata" rel="nofollow">http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#UserMetadata</a></strong>...</p> 
+             <blockquote> 
+              <p>Amazon S3 stores user-defined metadata in lowercase. Each name, value pair must conform to US-ASCII when using REST and UTF-8 when using SOAP or browser-based uploads via POST.</p> 
+             </blockquote> 
+            </div> 
+            <table class="fw"> 
+             <tbody>
+              <tr> 
+               <td class="vt"> 
+                <div class="post-menu">
+                 <a href="/a/30600664" title="short permalink to this answer" class="short-link" id="link-post-30600664">share</a>
+                 <span class="lsep">|</span>
+                 <a href="/posts/30600664/edit" class="suggest-edit-post" title="">improve this answer</a>
+                </div> </td> 
+               <td align="right" class="post-signature"> 
+                <div class="user-info "> 
+                 <div class="user-action-time">
+                   answered 
+                  <span title="2015-06-02 15:43:59Z" class="relativetime">Jun 2 at 15:43</span> 
+                 </div> 
+                 <div class="user-gravatar32"> 
+                  <a href="/users/682754/carlton">
+                   <div class="gravatar-wrapper-32">
+                    <img src="https://graph.facebook.com/501636708/picture?type=large" alt="" width="32" height="32">
+                   </div></a> 
+                 </div> 
+                 <div class="user-details"> 
+                  <a href="/users/682754/carlton">Carlton</a>
+                  <br> 
+                  <span class="reputation-score" title="reputation score " dir="ltr">1,223</span>
+                  <span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span>
+                  <span title="13 silver badges"><span class="badge2"></span><span class="badgecount">13</span></span>
+                  <span title="38 bronze badges"><span class="badge3"></span><span class="badgecount">38</span></span> 
+                 </div> 
+                </div> </td> 
+              </tr> 
+             </tbody>
+            </table> </td> 
+          </tr> 
+          <tr> 
+           <td class="votecell"></td> 
+           <td> 
+            <div id="comments-30600664" class="comments "> 
+             <table> 
+              <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true"> 
+               <tr id="comment-53796143" class="comment "> 
+                <td class="comment-actions"> 
+                 <table> 
+                  <tbody> 
+                   <tr> 
+                    <td class=" comment-score"> <span title="number of 'useful comment' votes received" class="cool">1</span> </td> 
+                    <td> &nbsp; </td> 
+                   </tr> 
+                  </tbody> 
+                 </table> </td> 
+                <td class="comment-text"> 
+                 <div style="display: block;" class="comment-body"> 
+                  <span class="comment-copy">ditto - when adding Metadata with a key 'Cache-Control' onto an object that already has a metadata key 'cache-control' I get this error.</span> –&nbsp; 
+                  <a href="/users/217357/joscha" title="2310 reputation" class="comment-user">Joscha</a> 
+                  <span class="comment-date" dir="ltr"><span title="2015-10-07 06:56:12Z" class="relativetime-clean">2 days ago</span></span> 
+                 </div> </td> 
+               </tr> 
+              </tbody> 
+             </table> 
+            </div> 
+            <div id="comments-link-30600664" data-rep="50" data-anon="true"> 
+             <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a>
+             <span class="js-link-separator dno">&nbsp;|&nbsp;</span> 
+             <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="#" onclick=""></a> 
+            </div> </td> 
+          </tr> 
+         </tbody>
+        </table> 
+       </div> 
+       <a name="new-answer"></a> 
+       <form id="post-form" action="/questions/10281557/answer/submit" method="post" class="post-form"> 
+        <input type="hidden" id="post-id" value="10281557"> 
+        <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false"> 
+        <input type="hidden" name="referrer" value=""> 
+        <h2 class="space">Your Answer</h2> 
+        <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script> 
+        <script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.options.snippets.enabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
+</script> 
+        <div id="post-editor" class="post-editor js-post-editor"> 
+         <div style="position: relative;"> 
+          <div class="wmd-container"> 
+           <div id="wmd-button-bar" class="wmd-button-bar"></div> 
+           <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea> 
+          </div> 
+         </div> 
+         <div class="fl" style="margin-top: 8px; height:24px;">
+          &nbsp;
+         </div> 
+         <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">
+          draft saved
+         </div> 
+         <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">
+          draft discarded
+         </div> 
+         <div id="wmd-preview" class="wmd-preview"></div> 
+         <div></div> 
+         <div class="edit-block"> 
+          <input id="fkey" name="fkey" type="hidden" value="4e37581a3e8af83c61352270d7360f8d"> 
+          <input id="author" name="author" type="text"> 
+         </div> 
+        </div> 
+        <div style="position: relative;"> 
+         <div class="form-item dno new-post-login"> 
+          <div class="new-login-form"> 
+           <div class="new-login-left"> 
+            <h3>Sign up or <a id="login-link" href="/users/login?ssrc=question_page&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api%23new-answer">log in</a></h3> 
+            <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script> 
+            <div class="preferred-login google-login"> 
+             <p><span class="icon"></span><span>Sign up using Google</span></p> 
+            </div> 
+            <div class="preferred-login facebook-login"> 
+             <p><span class="icon"></span><span>Sign up using Facebook</span></p> 
+            </div> 
+            <div class="preferred-login stackexchange-login"> 
+             <p><span class="icon"></span><span>Sign up using Email and Password</span></p> 
+            </div> 
+           </div> 
+           <input type="hidden" name="manual-openid" class="manual-openid"> 
+           <input type="hidden" name="use-facebook" class="use-facebook" value="false"> 
+           <input type="hidden" name="use-google" class="use-google" value="false"> 
+           <input type="button" class="submit-openid" value="Submit" style="display:none"> 
+           <div class="new-login-right"> 
+            <h3>Post as a guest</h3> 
+            <div class="form-item"> 
+             <table> 
+              <tbody>
+               <tr> 
+                <td class="vm"> 
+                 <div> 
+                  <label for="display-name">Name</label> 
+                  <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"> 
+                 </div> 
+                 <div> 
+                  <label for="m-address">Email</label> 
+                  <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown"> 
+                 </div> </td> 
+               </tr> 
+              </tbody>
+             </table> 
+            </div> 
+           </div> 
+          </div> 
+         </div> 
+         <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f10281557%2fsignaturedoesnotmatch-amazon-s3-api%23new-answer', 'question_page');
+                    }
+                );
+            </script> 
+         <noscript> 
+          <h3>Post as a guest</h3> 
+          <div class="form-item"> 
+           <table> 
+            <tbody>
+             <tr> 
+              <td class="vm"> 
+               <div> 
+                <label for="display-name">Name</label> 
+                <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105"> 
+               </div> 
+               <div> 
+                <label for="m-address">Email</label> 
+                <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown"> 
+               </div> </td> 
+             </tr> 
+            </tbody>
+           </table> 
+          </div> 
+         </noscript> 
+        </div> 
+        <div class="form-submit cbt"> 
+         <input id="submit-button" type="submit" value="Post Your Answer" tabindex="110"> 
+         <a href="#" class="discard-answer dno">discard</a> 
+         <p class="privacy-policy-agreement"> By posting your answer, you agree to the <a href="http://stackexchange.com/legal/privacy-policy" target="_blank">privacy policy</a> and <a href="http://stackexchange.com/legal/terms-of-service" target="_blank">terms of service</a>.</p> 
+         <input type="hidden" name="legalLinksShown" value="1"> 
+        </div> 
+       </form> 
+       <h2 class="bottom-notice" data-loc="1"> Not the answer you're looking for? Browse other questions tagged <a href="/questions/tagged/php" class="post-tag" title="show questions tagged 'php'" rel="tag">php</a> <a href="/questions/tagged/file-upload" class="post-tag" title="show questions tagged 'file-upload'" rel="tag">file-upload</a> <a href="/questions/tagged/upload" class="post-tag" title="show questions tagged 'upload'" rel="tag">upload</a> <a href="/questions/tagged/amazon-s3" class="post-tag" title="show questions tagged 'amazon-s3'" rel="tag">amazon-s3</a> <a href="/questions/tagged/amazon" class="post-tag" title="show questions tagged 'amazon'" rel="tag">amazon</a> or <a href="/questions/ask">ask your own question</a>. </h2> 
+      </div> 
+     </div> 
+     <div id="sidebar" class="show-votes"> 
+      <div class="module question-stats"> 
+       <table id="qinfo"> 
+        <tbody>
+         <tr> 
+          <td> <p class="label-key">asked</p> </td> 
+          <td style="padding-left: 10px"> <p class="label-key" title="2012-04-23 13:31:30Z"><b>3 years ago</b></p> </td> 
+         </tr> 
+         <tr> 
+          <td> <p class="label-key">viewed</p> </td> 
+          <td style="padding-left: 10px"> <p class="label-key"> <b>10624 times</b> </p> </td> 
+         </tr> 
+         <tr> 
+          <td> <p class="label-key">active</p> </td> 
+          <td style="padding-left: 10px"> <p class="label-key"><b><a href="?lastactivity" class="lastactivity-link" title="2015-06-02 15:43:59Z">4 months ago</a></b></p> </td> 
+         </tr> 
+        </tbody>
+       </table> 
+      </div> 
+      <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk781198828",[17,2221]).setZone(45); });
+            </script> 
+      <div class="everyonelovesstackoverflow" id="adzerk781198828"> 
+      </div> 
+      <div id="hireme"> 
+       <script>
+(function(){function f(t,r,f,e){var s=(r.cl||[]).join(" "),o=i.getElementById(t);o&&(s&&(o.className+=" "+s),o.innerHTML=r.cn.replace("&pt=0","&pt="+(e||"0")),o.onmousedown=function(t){var i,s,e,h,c,l;for(console.log(),i=t.target;i.tagName!=="A"&&i!==o;)i=i.parentNode;if(i!=o){for(s=n.enc,e=f,r.an&&(e+="?an="+r.an),h=0;h<i.attributes.length;++h)c=i.attributes[h],l=c.name.match(/^data-(.*)$/),l&&(e+="&"+s(l[1])+"="+s(c.value));e+="&utm="+s(u+r.utm);i.href=e}})}function e(){return[].map.call(n.qsa(".post-taglist .post-tag"),function(n){return n.innerText}).join(";")||null}if(!window.clc){var t=window,i=document,r=i.getElementsByTagName("head")[0],u="&utm_source="+location.hostname+"&utm_medium=ad&utm_campaign=",n={doc:i,head:r,enc:encodeURIComponent,dec:decodeURIComponent,se:t.StackExchange,ts:function(){return(new Date).getTime()},st:setTimeout,ct:clearTimeout,qsa:function(n){return document.querySelectorAll(n)}};n.as=function(n){var t=i.createElement("link");t.type="text/css";t.rel="stylesheet";t.href=n;r.appendChild(t)};n.ls=function(n,t,u){var f=i.createElement("script"),e=!1;f.async=!0;f.src=n;t&&(f.onload=f.onreadystatechange=function(){e||this.readyState&&this.readyState!=="loaded"&&this.readyState!=="complete"||(e=!0,t(f),f.onload=f.onreadystatechange=null,u&&f.parentNode.removeChild(f))});r.appendChild(f)};n.init=function(i){function o(){i.st.forEach(n.as);u.forEach(function(n){f(n,i.cr[n],r,e)});typeof t.clc_after_init=="function"&&t.clc_after_init()}var u=Object.keys(i.cr),r="//"+i.h+i.ct,e=n.cps?n.ts()-n.cps:0;i.an&&(r+="?an="+i.an);o()};n.lo=function(i){var u,f=t.location.hash,s=n.dec,r=n.se,o;i=i||{};switch(f){case"#large":opts.l=1;break;case"#abort":opts.abort=1;break;default:f.length>0&&f.substr(1).split("&").forEach(function(n){var t=n.split("=",2);this[s(t[0])]=s(t[1])},i)}return o=i.ac||i.accountid||r&&r.options&&r.options.user&&r.options.user.accountId,o&&(i.ac=o),i.tags||(u=e(),u&&(i.tags=u)),i};n.o2q=function(t,i){var r=n.enc;return Object.keys(t).filter(function(n){return i.indexOf(n)!==-1}).map(function(n){return r(n)+"="+r(t[n])}).join("&")};n.load=function(i,r,u){n.ls(i+"?"+n.o2q(r,u),function(){typeof t.clc_loaded=="function"&&t.clc_loaded()});n.cps=n.ts()};n.el=function(t){var i=n.qsa(t);return i.length>0?i[0]:null};n.hc=function(n){return n&&n.innerHTML&&n.innerHTML.replace(/\s+/g,"").length>0};n.wfc=function(t,i,r,u){function c(){n.hc(s)?(f(o),f(e),u(!0)):e=h(c,i)}function l(){f(e);u(!1)}var s=n.el(t),h=n.st,f=n.ct,o,e;if(s!==null)return c(),r&&(o=h(l,r)),function(){e&&f(e);o&&f(o)}};t.clc=n}})();;(function(n){function c(){var n=t.el(f);t.hc(n)||(n.parentNode.removeChild(n),typeof u=="function"&&u())}function l(u){if(!e){e=!0;var f=t.qsa("#"+i.d);f.length!==0&&(u||(i.azt=!0),i.lw=t.ts()-s,i.l||document.getElementById("careersadsdoublehigh")===null||(i.l=1),typeof r.innerWidth=="number"&&(i.bw=r.innerWidth),t.load(n.adurl,i,["d","l","ip","ac","eng","prov","tags","theme","remote","seed","lw","azt","sysadmin","fresh","bw"]))}}var r=window,t=r.clc,s=t.ts(),h=t.st,v=t.ct,f="#sidebar [id^='adzerk'].everyonelovesstackoverflow",i=t.lo({d:"hireme"}),e,u,o,a;i.abort||(o=null,u=t.wfc(f,20,o,l),a=h(c,2e3))}).call(null, {"bg":false,"adurl":"//clc.stackoverflow.com/j/p.js"});            </script> 
+      </div> 
+      <div class="module sidebar-related"> 
+       <h4 id="h-related">Related</h4> 
+       <div class="related js-gps-related-questions" data-tracker="rq=1"> 
+        <div class="spacer"> 
+         <a href="/q/6452561" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           3 
+          </div> </a>
+         <a href="/questions/6452561/signaturedoesnotmatch-on-amazon-s3-multipart-uploader" class="question-hyperlink">SignatureDoesNotMatch on Amazon S3 multipart uploader</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/10463360" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           5 
+          </div> </a>
+         <a href="/questions/10463360/uploadify-3-1-trying-to-upload-to-amazon-s3-signaturedoesnotmatch" class="question-hyperlink"> Uploadify 3.1 Trying to Upload to Amazon S3 (SignatureDoesNotMatch)</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/15264407" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           2 
+          </div> </a>
+         <a href="/questions/15264407/amazon-s3-upload-limit" class="question-hyperlink">Amazon S3 Upload Limit</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/16497645" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           0 
+          </div> </a>
+         <a href="/questions/16497645/getting-error-signaturedoesnotmatch-while-creating-bucket-in-amazon-using-s3-lib" class="question-hyperlink">Getting Error SignatureDoesNotMatch while creating bucket in amazon using s3 library of Zend</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/17798733" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes answered-accepted default">
+           0 
+          </div> </a>
+         <a href="/questions/17798733/amazon-s3-ios-sdk-photo-upload-error-sometimes-signaturedoesnotmatch" class="question-hyperlink">Amazon S3 iOS SDK Photo Upload Error SOMETIMES - SignatureDoesNotMatch</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/27419004" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           -1 
+          </div> </a>
+         <a href="/questions/27419004/signaturedoesnotmatch-in-amazon-s3-rest-api" class="question-hyperlink">SignatureDoesNotMatch in Amazon s3 Rest API</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/27443826" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           0 
+          </div> </a>
+         <a href="/questions/27443826/upload-image-to-amazon-s3-using-php" class="question-hyperlink">upload image to amazon s3 using php</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/27782988" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           0 
+          </div> </a>
+         <a href="/questions/27782988/amazon-aws-api-signaturedoesnotmatch" class="question-hyperlink">amazon aws API SignatureDoesNotMatch</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/28756166" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes default">
+           2 
+          </div> </a>
+         <a href="/questions/28756166/signaturedoesnotmatch-error-with-amazon-s3-and-coldfusion-putobject-request" class="question-hyperlink">SignatureDoesNotMatch error with Amazon S3 and ColdFusion PutObject request</a> 
+        </div> 
+        <div class="spacer"> 
+         <a href="/q/31909503" title="Vote score (upvotes - downvotes)"> 
+          <div class="answer-votes answered-accepted default">
+           1 
+          </div> </a>
+         <a href="/questions/31909503/signaturedoesnotmatch-when-attempting-to-list-a-product-on-amazon-api" class="question-hyperlink">SignatureDoesNotMatch when attempting to list a product on Amazon API</a> 
+        </div> 
+       </div> 
+      </div> 
+      <div id="hot-network-questions" class="module"> 
+       <h4> <a href="//stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })"> Hot Network Questions </a> </h4> 
+       <ul> 
+        <li> 
+         <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/60063/graph-florets-of-a-flower" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })"> Graph Florets of a Flower </a> </li> 
+        <li> 
+         <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/55683/tongue-slip-problem-in-conference-presentation-even-after-a-good-amount-of-pract" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })"> Tongue slip problem in conference presentation even after a good amount of practice </a> </li> 
+        <li> 
+         <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/271986/how-to-maintain-text-justification-after-forcing-a-new-line" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })"> how to maintain text justification after forcing a new line </a> </li> 
+        <li> 
+         <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/70424/is-who-do-you-take-after-to-be-good-at-math-fine" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })"> Is "Who do you take after to be good at Math?" fine? </a> </li> 
+        <li> 
+         <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/104654/did-harry-potter-ever-get-on-a-famous-witches-and-wizards-card" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })"> Did Harry Potter ever get on a Famous Witches and Wizards card? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/22407/my-parents-are-taking-over-my-life-i-think-im-going-insane" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })"> My parents are taking over my life, I think I'm going insane </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-biology" title="Biology Stack Exchange"></div><a href="http://biology.stackexchange.com/questions/39415/insect-identification-chennai-india" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:375 }); posts_hot_network.click({ item_type:2, location:11 })"> Insect identification, Chennai, India </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-magento" title="Magento Stack Exchange"></div><a href="http://magento.stackexchange.com/questions/85836/re-write-wishlist-controller" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:479 }); posts_hot_network.click({ item_type:2, location:11 })"> re-write wishlist controller </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-programmers" title="Programmers Stack Exchange"></div><a href="http://programmers.stackexchange.com/questions/299468/should-udp-data-payloads-include-a-crc" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:131 }); posts_hot_network.click({ item_type:2, location:11 })"> Should UDP data payloads include a CRC? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/1471483/how-far-can-we-go-with-group-isomorphisms" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })"> How far can we go with group isomorphisms? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-unix" title="Unix &amp; Linux Stack Exchange"></div><a href="http://unix.stackexchange.com/questions/234970/script-to-check-if-ssl-certificate-is-valid" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:106 }); posts_hot_network.click({ item_type:2, location:11 })"> script to check if SSL certificate is valid </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-blender" title="Blender Stack Exchange"></div><a href="http://blender.stackexchange.com/questions/39715/how-could-i-model-a-realistic-broken-pillar-concrete" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:502 }); posts_hot_network.click({ item_type:2, location:11 })"> How could I model a realistic broken pillar (concrete)? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/27179/the-ai-that-fails-to-be-evil" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })"> The AI that fails to be evil </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/57256/possibility-of-meeting-people-with-name-vasco-da-gama-in-portugal" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })"> Possibility of meeting people with name Vasco da Gama in portugal </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-parenting" title="Parenting Stack Exchange"></div><a href="http://parenting.stackexchange.com/questions/22475/how-can-a-parent-encourage-their-child-to-talk-more-about-what-they-did-at-schoo" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:228 }); posts_hot_network.click({ item_type:2, location:11 })"> How can a parent encourage their child to talk more about what they did at school? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-lifehacks" title="Lifehacks Stack Exchange"></div><a href="http://lifehacks.stackexchange.com/questions/9531/how-can-i-keep-my-cat-off-my-keyboard" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:593 }); posts_hot_network.click({ item_type:2, location:11 })"> How can I keep my cat off my keyboard? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/33019562/what-is-the-usage-of-default-when-the-switch-is-for-an-enum" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })"> What is the usage of default when the switch is for an enum? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-money" title="Personal Finance &amp; Money Stack Exchange"></div><a href="http://money.stackexchange.com/questions/54561/why-buy-insurance" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:93 }); posts_hot_network.click({ item_type:2, location:11 })"> Why buy insurance? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/69682/what-is-the-history-of-the-term-dungeon-masters-screen" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })"> What is the history of the term "Dungeon Master's Screen"? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-askubuntu" title="Ask Ubuntu"></div><a href="http://askubuntu.com/questions/683335/referencing-variables-in-a-shell-script" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:89 }); posts_hot_network.click({ item_type:2, location:11 })"> Referencing variables in a shell script </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/220447/are-the-following-identies-well-known" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })"> Are the following identies well known? </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-dba" title="Database Administrators Stack Exchange"></div><a href="http://dba.stackexchange.com/questions/117558/loop-through-comma-separated-values" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:182 }); posts_hot_network.click({ item_type:2, location:11 })"> Loop through comma separated values </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-mathematica" title="Mathematica Stack Exchange"></div><a href="http://mathematica.stackexchange.com/questions/96573/through-does-not-work-with-subtract" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:387 }); posts_hot_network.click({ item_type:2, location:11 })"> Through does not work with Subtract </a> </li> 
+        <li class="dno js-hidden"> 
+         <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/59347/shortest-infinite-loop-producing-no-output" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })"> Shortest infinite loop producing no output </a> </li> 
+       </ul> 
+       <a href="#" class="show-more js-show-more js-gps-track" data-gps-track="posts_hot_network.click({ item_type:3, location:11 })"> more hot questions </a> 
+      </div> 
+     </div> 
+     <div id="feed-link"> 
+      <div id="feed-link-text"> 
+       <a href="/feeds/question/10281557" title="feed of this question and its answers"> <span class="feed-icon"></span>question feed </a> 
+      </div> 
+     </div> 
+     <script>
+StackExchange.ready(function(){$.get('/posts/10281557/ivc/8d37');});
+</script> 
+     <noscript> 
+      <div>
+       <img src="/posts/10281557/ivc/8d37" class="dno" alt="" width="0" height="0">
+      </div> 
+     </noscript>
+     <div style="display:none" id="prettify-lang">
+      lang-php
+     </div>
+    </div> 
+   </div> 
+  </div> 
+  <div id="footer" class="categories"> 
+   <div class="footerwrap"> 
+    <div id="footer-menu"> 
+     <div class="top-footer-links"> 
+      <a href="/tour">tour</a> 
+      <a href="/help">help</a> 
+      <a href="http://blog.stackoverflow.com?blb=1">blog</a> 
+      <a href="http://chat.stackoverflow.com">chat</a> 
+      <a href="http://data.stackexchange.com">data</a> 
+      <a href="http://stackexchange.com/legal">legal</a> 
+      <a href="http://stackexchange.com/legal/privacy-policy">privacy policy</a> 
+      <a href="http://stackexchange.com/work-here">work here</a> 
+      <a href="http://stackexchange.com/mediakit">advertising info</a> 
+      <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a> 
+      <b><a href="/contact">contact us</a></b> 
+      <b><a href="http://meta.stackoverflow.com">feedback</a></b> 
+     </div> 
+     <div id="footer-sites"> 
+      <table> 
+       <tbody>
+        <tr> 
+         <th colspan="3"> Technology </th> 
+         <th> Life / Arts </th> 
+         <th> Culture / Recreation </th> 
+         <th> Science </th> 
+         <th> Other </th> 
+        </tr> 
+        <tr> 
+         <td> 
+          <ol> 
+           <li><a href="//stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li> 
+           <li><a href="//serverfault.com" title="system and network administrators">Server Fault</a></li> 
+           <li><a href="//superuser.com" title="computer enthusiasts and power users">Super User</a></li> 
+           <li><a href="//webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li> 
+           <li><a href="//askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li> 
+           <li><a href="//webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li> 
+           <li><a href="//gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li> 
+           <li><a href="//tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li> 
+          </ol></td>
+         <td>
+          <ol> 
+           <li><a href="//programmers.stackexchange.com" title="professional programmers interested in conceptual questions about software development">Programmers</a></li> 
+           <li><a href="//unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li> 
+           <li><a href="//apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li> 
+           <li><a href="//wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li> 
+           <li><a href="//gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li> 
+           <li><a href="//electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li> 
+           <li><a href="//android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li> 
+           <li><a href="//security.stackexchange.com" title="information security professionals">Information Security</a></li> 
+          </ol></td>
+         <td>
+          <ol> 
+           <li><a href="//dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li> 
+           <li><a href="//drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li> 
+           <li><a href="//sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li> 
+           <li><a href="//ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li> 
+           <li><a href="//mathematica.stackexchange.com" title="users of Mathematica">Mathematica</a></li> 
+           <li><a href="//salesforce.stackexchange.com" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li> 
+           <li><a href="//expressionengine.stackexchange.com" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li> 
+           <li> <a href="http://stackexchange.com/sites#technology" class="more"> more (13) </a> </li> 
+          </ol> </td> 
+         <td> 
+          <ol> 
+           <li><a href="//photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li> 
+           <li><a href="//scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li> 
+           <li><a href="//graphicdesign.stackexchange.com" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li> 
+           <li><a href="//movies.stackexchange.com" title="movie and tv enthusiasts">Movies &amp; TV</a></li> 
+           <li><a href="//cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li> 
+           <li><a href="//diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li> 
+           <li><a href="//money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li> 
+           <li><a href="//academia.stackexchange.com" title="academics and those enrolled in higher education">Academia</a></li> 
+           <li> <a href="http://stackexchange.com/sites#lifearts" class="more"> more (9) </a> </li> 
+          </ol> </td> 
+         <td> 
+          <ol> 
+           <li><a href="//english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li> 
+           <li><a href="//skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li> 
+           <li><a href="//judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li> 
+           <li><a href="//travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li> 
+           <li><a href="//christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li> 
+           <li><a href="//gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li> 
+           <li><a href="//bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li> 
+           <li><a href="//rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li> 
+           <li> <a href="http://stackexchange.com/sites#culturerecreation" class="more"> more (21) </a> </li> 
+          </ol> </td> 
+         <td> 
+          <ol> 
+           <li><a href="//math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li> 
+           <li><a href="//stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li> 
+           <li><a href="//cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li> 
+           <li><a href="//physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li> 
+           <li><a href="//mathoverflow.net" title="professional mathematicians">MathOverflow</a></li> 
+           <li><a href="//chemistry.stackexchange.com" title="scientists, academics, teachers and students">Chemistry</a></li> 
+           <li><a href="//biology.stackexchange.com" title="biology researchers, academics, and students">Biology</a></li> 
+           <li> <a href="http://stackexchange.com/sites#science" class="more"> more (5) </a> </li> 
+          </ol> </td> 
+         <td> 
+          <ol> 
+           <li><a href="//stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li> 
+           <li><a href="//meta.stackexchange.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li> 
+           <li><a href="//area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li> 
+           <li><a href="//careers.stackoverflow.com">Stack Overflow Careers</a></li> 
+          </ol> </td> 
+        </tr> 
+       </tbody>
+      </table> 
+     </div> 
+    </div> 
+    <div id="copyright">
+      site design / logo © 2015 Stack Exchange Inc; user contributions licensed under 
+     <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> with 
+     <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a> 
+    </div> 
+    <div id="svnrev">
+      rev 2015.10.9.2879 
+    </div> 
+   </div> 
+  </div> 
+  <noscript> 
+   <div id="noscript-warning">
+    Stack Overflow works best with JavaScript enabled
+    <img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno">
+   </div> 
+  </noscript> 
+  <script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script> 
+  <script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    ados.run.push(function () { ados_setKeywords('php,file-upload,upload,amazon-s3,amazon');; ados_load(); });         
+</script> 
+  <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-5620270-1');
+                        ga('set', 'dimension2', '|php|file-upload|upload|amazon-s3|amazon|');         ga('send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+            qc.async=true;
+            qc.src=(ssl?'https://secure':'http://edge')+'.quantserve.com/quant.js';
+            s.parentNode.insertBefore(qc, s);
+            var sc=document.createElement('script');
+            sc.async=true;
+            sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+            s.parentNode.insertBefore(sc, s);
+        })();
+        _comscore.push({ c1: "2", c2: "17440561" });
+        _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+    </script>  
+ </body>
+</html>
