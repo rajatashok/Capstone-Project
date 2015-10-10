@@ -1,0 +1,42 @@
+{
+	"_id" : ObjectId("561932ae1c48821f3bd28433"),
+	"title" : "Facebook api search.",
+	"posts" : "I'm new to studying the Facebook API search. I use this code, but the resault is empty. Can anyone help me? Thanks.",
+	"datePosted" : "2010-12-20 14:17:23Z",
+	"user" : "yuli chika"
+}
+{
+	"_id" : ObjectId("561932ae1c48821f3bd28434"),
+	"title" : "Facebook api search.",
+	"posts" : "Your $url parameter is set to: \"https://graph.facebook.com/oauth/access_token?ient_id=api_id&redirect_uri=my_url&client_secret=my_secret\"; The values for 'client_id', 'redirect_uri', and 'client_secret' are still set to placeholders. The best way to handle this is like so: You should assign the real desired values to $fb_app_id, $my_redirect_url, and $fb_app_secret. For the $fb_app_id and $fb_app_secret, you can get them from your app's settings in the Facebook Developer area for the app in question (at http://www.facebook.com/developer). The value of $my_redirect_url has to be a real URL within the 'Web Site' tab in the Edit App area: http://drktd.com/3zc4",
+	"datePosted" : "2011-01-12 22:50:13Z",
+	"user" : "Kyle Wild"
+}
+{
+	"_id" : ObjectId("561932ae1c48821f3bd28435"),
+	"title" : "Facebook api search.",
+	"posts" : "https://graph.facebook.com/oauth/access_token?client_id=api_id&redirect_uri=my_‌​url&client_secret=my_secret You need to replace api_id,my_url and my_secret with approriate data first",
+	"datePosted" : "2010-12-20 14:28:08Z",
+	"user" : "Horia Dragomir"
+}
+{
+	"_id" : ObjectId("561932ae1c48821f3bd28436"),
+	"title" : "Facebook api search.",
+	"posts" : "@Horia Dragomir, yes, I have already replace to mine, but the result is empty, even I search myself name.",
+	"datePosted" : "2010-12-20 14:48:53Z",
+	"user" : "yuli chika"
+}
+{
+	"_id" : ObjectId("561932ae1c48821f3bd28437"),
+	"title" : "Facebook api search.",
+	"posts" : "does $access_token mean something valid?",
+	"datePosted" : "2010-12-20 14:59:39Z",
+	"user" : "ajreal"
+}
+{
+	"_id" : ObjectId("561932ae1c48821f3bd28438"),
+	"title" : "Facebook api search.",
+	"posts" : "Please accept an answer.",
+	"datePosted" : "2011-01-22 20:26:48Z",
+	"user" : "Kyle Wild"
+}
