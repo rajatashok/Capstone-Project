@@ -144,7 +144,7 @@ public class Projects {
 
         // Code to invoke LDA MALLET
         String[] files = new String[1];
-        files[0] = "ap.txt";
+        files[0] = "/home/rajat/IdeaProjects/Capstone-Project/src/ap.txt";
         TopicModel.main(files);
 
         PrintWriter writer2 = new PrintWriter("Output2.html", "UTF-8");
