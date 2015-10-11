@@ -1,6 +1,8 @@
 import java.net.*;
 import java.io.*;
 import java.util.*;
+
+import cc.mallet.examples.TopicModel;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -12,6 +14,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import cc.mallet.util.*;
+import cc.mallet.types.*;
+import cc.mallet.pipe.*;
+import cc.mallet.pipe.iterator.*;
+import cc.mallet.topics.*;
 
 public class Projects {
     public static void main(String[] args) throws Exception {
@@ -134,6 +141,12 @@ public class Projects {
             collection.insert(document);
         }
 //        }
+
+        // Code to invoke LDA MALLET
+        String[] files = new String[1];
+        files[0] = "ap.txt";
+        TopicModel.main(files);
+
         PrintWriter writer2 = new PrintWriter("Output2.html", "UTF-8");
         writer2.println(doc);
         writer2.close();
