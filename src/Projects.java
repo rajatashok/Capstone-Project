@@ -3,10 +3,7 @@ import java.io.*;
 import java.util.*;
 
 import cc.mallet.examples.TopicModel;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.MongoClient;
+import com.mongodb.*;
 import org.jsoup.Jsoup;
 import org.jsoup.helper.Validate;
 import org.jsoup.nodes.Document;
@@ -27,13 +24,12 @@ public class Projects {
         // Getting List of Popular APIs
         Document programmableWeb = Jsoup.connect("http://www.programmableweb.com/category/all/apis?order=field_popularity").timeout(0).userAgent("Mozilla").get();
         Elements apiList = programmableWeb.getElementsByClass("views-field-title");
-        for (Element apis : apiList.select("a")) {
+//        for (Element apis : apiList.select("a")) {
             //   System.out.println(apis.text());
-            //        }
 
-//            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
-            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=" + apis.text().replace(" ","+")).timeout(0).userAgent("Mozilla").get();
-
+            //  Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
+//            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=" + apis.text().replace(" ","+")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
+            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=amazon+s3+api").timeout(0).userAgent("Mozilla").get();
             Elements links = mainDocument.select("a[href]");
             String pattern = "^http://stackoverflow.com/questions/[0-9]+/";
 
@@ -54,46 +50,52 @@ public class Projects {
                 ArrayList userReputation = new ArrayList();
                 ArrayList posts = new ArrayList();
 
-                //        Document doc = Jsoup.connect("http://stackoverflow.com/questions/4490439/facebook-api-search").timeout(0).userAgent("Mozilla").get();
-                Document doc = Jsoup.connect((String) urlList.get(i)).timeout(0).userAgent("Mozilla").get();
-//                Document doc = Jsoup.connect("http://stackoverflow.com/questions/1544739/google-maps-api-v3-how-to-remove-all-markers").timeout(0).userAgent("Mozilla").get();
+//                        Document doc = Jsoup.connect("http://stackoverflow.com/questions/4490439/facebook-api-search").timeout(0).followRedirects(false).userAgent("Mozilla").get();
+//                        Document doc = Jsoup.connect("http://stackoverflow.com/questions/1544739/google-maps-api-v3-how-to-remove-all-markers").timeout(0).followRedirects(false).userAgent("Mozilla").get();
+
+//                Document doc = Jsoup.connect("http://stackoverflow.com/questions/10281557/signaturedoesnotmatch-amazon-s3-api").timeout(0).followRedirects(false).userAgent("Mozilla").get();
+                Document doc = Jsoup.connect((String) urlList.get(i)).timeout(0).followRedirects(false).userAgent("Mozilla").get();
                 // Get Title
                 Elements title = doc.select("div.container div.snippet-hidden div div h1 a.question-hyperlink");
                 System.out.println("Title= " + title.text());
 
-
-                ////////////////////////////////////////////////////////////////
+                // Get details of posts and comments
                 Elements details = doc.select("td.comment-text:has(a.comment-user)");
                 // For comments
                 for (Element element : details) {
                     usernames.add(element.select("a.comment-user").text());
                     datePosted.add(element.select("span.relativetime-clean").attr("title"));
                     posts.add(element.select("span.comment-copy").text());
-//                    System.out.println(element.select("a.comment-user").text()+ "   " + element.select("span.relativetime-clean").attr("title")+ "   " + element.select("span.comment-copy").text());
+                    //  System.out.println(element.select("a.comment-user").text()+ "   " + element.select("span.relativetime-clean").attr("title")+ "   " + element.select("span.comment-copy").text());
                 }
                 // For posts
                 details = doc.select("td.post-signature:has(div.user-details:has(a))");
                 for (Element element : details) {
+//                    System.out.println("details.attr(\"class\")= " + details.select("div.user-action-time").text());
+
                     if (element.select("div.user-action-time a").text().length()>=6 && element.select("div.user-action-time a").text().substring(0, 6).equals("edited")) {
                         continue;
                     }
+                    System.out.println(element.select("div.user-action-time").text());
 
+                    if(element.select("div.user-action-time").text().length()>=5 && element.select("div.user-action-time").text().substring(0, 5).equals("asked")) {
+                        System.out.println("Owner= " + element.select("div.user-details a").text());
+                    }
                     if(element.select("div.user-details a").text().indexOf("users")!=-1 && element.select("div.user-details a").text().indexOf("revs")!=-1) {
-                        Document userRevisionsdoc = Jsoup.connect("http://stackoverflow.com"+element.select("a").attr("href")).timeout(0).userAgent("Mozilla").get();
+                        Document userRevisionsdoc = Jsoup.connect("http://stackoverflow.com"+element.select("a").attr("href")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
                         datePosted.add(userRevisionsdoc.select("span.relativetime").get(0).text());
                         usernames.add(userRevisionsdoc.select("div.user-details a").get(0).text());
                         continue;
                     }
                     usernames.add(element.select("div.user-details a").text());
                     datePosted.add(element.select("div.user-action-time span").attr("title"));
-//                    System.out.println(element.select("div.user-details a").text() + "    " + element.select("div.user-action-time span").attr("title"));
+                    //  System.out.println(element.select("div.user-details a").text() + "    " + element.select("div.user-action-time span").attr("title"));
                 }
                 Elements text = doc.select("div.post-text");
                 for (Element div : text) {
                     Elements p = div.select("p");
                     posts.add(p.text());
                 }
-
 
                 // Database connection and insert
                 MongoClient mongoClient = new MongoClient("localhost");
@@ -106,13 +108,26 @@ public class Projects {
                 writer2.close();
 
                 for (int j = 0; j < usernames.size(); j++) {
-                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j));
+                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j)).append("upvotes",4);
 //                                    System.out.println(datePosted.get(j) + "x" + usernames.get(j) + "x" );
-                    collection.insert(document);
+//                    collection.insert(document);
                 }
             }
-        }
-        // Code to invoke LDA MALLET
+//        }
+
+        MongoClient mongoClient = new MongoClient("localhost");
+        List<String> databases = mongoClient.getDatabaseNames();
+        DB db = mongoClient.getDB("local");
+        DBCollection collection = db.getCollection("users");
+        DBObject dbObject = collection.findOne();
+        List list = collection.distinct("title");
+        System.out.println(list);
+
+//        PrintWriter writer2 = new PrintWriter("Output2.html", "UTF-8");
+//        writer2.println(doc);
+//        writer2.close();
+
+//        // Code to invoke LDA MALLET
 //        String[] files = new String[1];
 //        files[0] = "/home/rajat/IdeaProjects/Capstone-Project/src/ap.txt";
 //        TopicModel.main(files);
