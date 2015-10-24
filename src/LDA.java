@@ -17,8 +17,10 @@ public class LDA {
 //        Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet train-topics --input /home/rajat/IdeaProjects/Capstone-Project/src/ap2.txt --num-topics 100 --output-state topic-state.gz\n"});
 //        Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet import-file --input /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt --output opt.txt"});
 //        Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet import-file --input /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt --output opt.txt --keep-sequence --remove-stopwords"});
-        Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet import-file --print-output --input /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt --output web.mallet --keep-sequence --remove-stopwords"});
-//        /home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet import-file --print-output --input /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt --output web.mallet --keep-sequence --remove-stopwords
+
+        Process p2 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet import-file --print-output --input /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt --output web.mallet --keep-sequence --remove-stopwords"});
+        Process p = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/mallet-2.0.8RC2/bin/mallet train-topics --input /home/rajat/IdeaProjects/Capstone-Project/web.mallet --num-topics 10 --num-top-words 1 --num-iterations 100 --output-doc-topics output.txt"});
+
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()) );
         while ((line = in.readLine()) != null) {
             System.out.println(line);

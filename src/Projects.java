@@ -121,19 +121,20 @@ public class Projects {
         DBCollection collection = db.getCollection("users");
         DBObject dbObject = collection.findOne();
         List list = collection.distinct("title");
-        System.out.println(list);
 
-//        PrintWriter writer2 = new PrintWriter("Output2.html", "UTF-8");
-//        writer2.println(doc);
-//        writer2.close();
 
-//        // Code to invoke LDA MALLET
-//        String[] files = new String[1];
-//        files[0] = "/home/rajat/IdeaProjects/Capstone-Project/src/ap.txt";
-//        TopicModel.main(files);
-//
-//        PrintWriter writer2 = new PrintWriter("Output2.html", "UTF-8");
-//        writer2.println(doc);
-//        writer2.close();
+        BasicDBObject allQuery = new BasicDBObject();
+        BasicDBObject fields = new BasicDBObject();
+        fields.put("_id", 1);
+        fields.put("posts", 1);
+
+        DBCursor cursor = collection.find(allQuery, fields);
+        PrintWriter writer2 = new PrintWriter("src/ap.txt", "UTF-8");
+        while (cursor.hasNext()) {
+            BasicDBObject obj = (BasicDBObject) cursor.next();
+            writer2.println(obj.getString("_id") + "\tX\t" + obj.getString("posts"));
+        }
+        writer2.close();
+
     }
 }
