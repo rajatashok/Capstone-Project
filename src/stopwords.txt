@@ -35,6 +35,7 @@ anyway
 anyways
 anywhere
 apart
+api
 appear
 appreciate
 appropriate
@@ -522,4 +523,7 @@ yourself
 yourselves
 z
 zero
-api
+i'm
+it's
+i've
+don't
