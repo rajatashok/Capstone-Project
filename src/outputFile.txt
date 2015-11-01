@@ -1,0 +1,1621 @@
+561fdaa21c48820ce883921a	X	Thanks!
+  Positive
+How to fix this problem - goo.gl/QTdm4
+561fdaa21c48820ce883921b	X	@roman-nazarkin So the issue was the bucket location?
+  Negative
+561fdaa21c48820ce883921c	X	in my case there was some extra whitespace in the config file/setting which had the secret key, so it was transmitting an extra tab character in the "password", thus invalidating the signature.
+  Negative
+561fdaa21c48820ce883921d	X	I had this same issue.
+  Negative
+It turned out the debugging tool I was using was mistakingly sending GET requests when the signature specified POST.
+  Negative
+This threw me off to thinking something was wrong with my signature encodings.
+  Negative
+Dumb mistake took up almost a day of trial and error.
+  Negative
+561fdaa21c48820ce883921e	X	ditto - when adding Metadata with a key 'Cache-Control' onto an object that already has a metadata key 'cache-control' I get this error.
+  Negative
+561fdaa21c48820ce883921f	X	I am using a PHP class for Amazon S3 and CloudFront - Link.
+  Negative
+But when I try to upload a file into a bucket, I get this error: [SignatureDoesNotMatch] The request signature we calculated does not match the signature you provided.
+  Very negative
+Check your key and signing method.
+  Neutral
+How to fix it?
+  Neutral
+Thanks.
+  Neutral
+561fdaa21c48820ce8839220	X	When you sign up for Amazon, you can create yourself a key pair (Amazon calls those access key ID and secret access key).
+  Negative
+Those two are used to sign requests to Amazon's webservices.
+  Neutral
+Amazon re-calculates the signature and compares if it matches the one that was contained in your request.
+  Negative
+That way the secret access key never needs to be transmitted over the network.
+  Negative
+If you get "Signature does not match", it's highly likely you used a wrong secret access key.
+  Negative
+Can you double-check access key and secret access key to make sure they're correct?
+  Neutral
+561fdaa21c48820ce8839221	X	Personally I received this error because of the characters that were in my meta data.
+  Negative
+The problematic character was the "–" chracter which is "\u2013" in unicode and different to "-".
+  Negative
+A note from the documentation http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#UserMetadata... Amazon S3 stores user-defined metadata in lowercase.
+  Negative
+Each name, value pair must conform to US-ASCII when using REST and UTF-8 when using SOAP or browser-based uploads via POST.
+  Negative
+561fdaa21c48820ce8839223	X	Did you apply both code for same Bucket or for live server you did use the bucket which is already in lower case ?
+  Negative
+561fdaa21c48820ce8839224	X	Same bucket name on both the servers.
+  Neutral
+Why we should append the key with the bucket name?
+  Negative
+561fdaa21c48820ce8839225	X	I do not have knowledge of the language (php ) you are working on.
+  Negative
+BUT Yes, you do not need to append key with bucket name.
+  Negative
+You are already passing key in create object method.
+  Neutral
+561fdaa21c48820ce8839226	X	The following is sample code from Amazon S3 API Documentation.
+  Negative
+This works on live site but on the localhost the latter gives an error saying no bucket found   // Success?
+  Negative
+but removing the .
+  Neutral
+strtolower($s3->key); works
+561fdaa21c48820ce8839227	X	Amazon S3 is case sensitive.
+  Negative
+So for Bucket as well as Object if you changes the Name to Upper or Lower Case, It will give you different result.
+  Negative
+Means if Bucket Name has some Capital Laters and your code make changed the it name to lower case then It will returns you Bucket Does No Exist like message.
+  Negative
+So make sure that what actually bucket as well as object name exist at Amazon S3.
+  Neutral
+561fdaa21c48820ce8839229	X	thanks, for some reason when I googles I found other libs, that wasn't suitable, but not this one.
+  Negative
+So I'm going to try this one.
+  Negative
+.
+  Neutral
+561fdaa21c48820ce883922a	X	If there someone who worked with Amazon S3 API in C?
+  Negative
+I can't manage to sign my REST request proper.
+  Negative
+Can someone share his successful experience in that?
+  Positive
+561fdaa21c48820ce883922b	X	I've never tried it, but a quick Google turned up the libs3 C library API for Amazon S3.
+  Negative
+That might make things easier, so you don't have to deal with raw HTTP requests via curl.
+  Negative
+561fdaa21c48820ce883922d	X	I am trying to use Amazon S3 API for uploading images to bucket.
+  Negative
+But I can't create a bucket.
+  Negative
+It shows "Access Denied " error.
+  Negative
+My code is: Is it required any permission?
+  Neutral
+Anyone please help me.
+  Positive
+561fdaa21c48820ce883922f	X	possible duplicate of privacy on Amazon S3
+561fdaa21c48820ce8839230	X	I'm using amazon S3 php to upload and download files.
+  Negative
+for exemple to get a private file from amazon s3 I'm using: and TO download it but this is very heavy for the server, is there a solution to directly download private objects from amazon s3 using a link, a little like for public objects with a security.
+  Negative
+Thanks
+561fdaa21c48820ce8839231	X	You can create pre-signed URLs for objects that have an expiration date.
+  Negative
+You can use this feature to allow people to download private objects directly from Amazon S3.
+  Neutral
+The AWS SDK for PHP has an easy S3Client::getObjectUrl() method that can help you do this.
+  Positive
+561fdaa31c48820ce8839233	X	So I setup another S3 account and use it's credentials (key/secret) then?
+  Negative
+561fdaa31c48820ce8839234	X	That's correct.
+  Neutral
+561fdaa31c48820ce8839235	X	That would limit them (meaning one who has this other account credientials) from manipulating that shared bucket, but wouldn't they have unfettered access to that S3 account and store?
+  Negative
+Meaning, they could create bucket(s) via the API and upload stuff to their hearts content?
+  Neutral
+I'm looking specifically for a way to have a client app that can talk to S3 with the restful API but is restricted in what can be done with those credentials.
+  Negative
+Namely read-only.
+  Neutral
+Is that possible?
+  Neutral
+561fdaa31c48820ce8839236	X	You're right that using another S3 account gives that other account the ability to create new buckets.
+  Positive
+The only way I can think of to do what you suggest is to use anonymous access to your S3 bucket.
+  Negative
+If you choose random enough object names, then people aren't likely to guess the names of your objects.
+  Negative
+However, you are then responsible for bandwidth costs incurred by the anonymous downloads, and access to your objects aren't limited to authenticated accounts.
+  Neutral
+561fdaa31c48820ce8839237	X	I'm not concerned about people downloading stuff... just don't want them doing anything else.
+  Negative
+Read only, as it were.
+  Negative
+So the REST API, if used, always applies to a user with full access to the store?
+  Negative
+The only way to do something like this is to use a normal HTTP downloading through the object's public URL?
+  Negative
+561fdaa31c48820ce8839238	X	Is there a way to create a different identity to (access key / secret key) to access Amazon S3 buckets via the REST API where I can restrict access (read only for example)?
+  Negative
+561fdaa31c48820ce8839239	X	Yes, you can.
+  Positive
+The S3 API documentation describes the Authentication and Access Control services available to you.
+  Negative
+You can set up a bucket so that another Amazon S3 account can read but not modify items in the bucket.
+  Negative
+561fdaa31c48820ce883923a	X	The recommended way is to use IAM to create a new user, then apply a policy to that user.
+  Negative
+561fdaa31c48820ce883923b	X	Check out the details at http://docs.amazonwebservices.com/AmazonS3/2006-03-01/dev/index.html?UsingAuthAccess.html (follow the link to "Using Query String Authentication")- this is a subdocument to the one Greg Posted, and describes how to generate access URLs on the fly.
+  Negative
+This uses a hashed form of the private key and allows expiration, so you can give brief access to files in a bucket without allowed unfettered access to the rest of the S3 store.
+  Positive
+Constructing the REST URL is quite difficult, it took me about 3 hours of coding to get it right, but this is a very powerful access technique.
+  Positive
+561fdaa31c48820ce883923d	X	I'm trying to make an AutoIT script interface with the Amazon S3 API.
+  Negative
+I've been trying both SOAP and REST, although no success.
+  Negative
+This is the SOAP code I'm working with (modified example from Ptrex on the AutoIT forums), however I get the following response: "soapenv:Client.badRequest Missing SOAPAction header" To be honest, the code doesn't make that much sense to me and I'm really just tinkering around.
+  Very negative
+Any examples or pointers to get me going in the right direction on how to properly interface with the Amazon S3 API would be greatly appreciated!
+  Negative
+561fdaa31c48820ce883923e	X	I don't know if this helps you out but from the autoit part everything works well The answer you get from amazon 'soapenv:Client.badRequest Missing SOAPAction header' means what it actually says something worng with your request.
+  Negative
+-namely: Missing SOAPAction header What you get was indeed a response but an error response from the server.
+  Negative
+I suggest trying to rewrite the request I found the most relevant description here: http://docs.aws.amazon.com/AWSSimpleQueueService/2008-01-01/SQSDeveloperGuide/index.html?MakingRequests_MakingSOAPRequestsArticle.html
+561fdaa31c48820ce8839240	X	I had the same problem, your service url needs http or https.
+  Negative
+Worked for me.
+  Neutral
+The documentation is pretty poor in the sense that its wrong.
+  Negative
+IMO
+561fdaa31c48820ce8839241	X	I tried that already, if I add http:// to the serviceurl for the config and then ask the listobjects, it asks actually for: bucketnamehttp://s3.amazonaws.com and fails because this is obviously not valid.
+  Very negative
+561fdaa31c48820ce8839242	X	Also, because it's key based, everything is case sensitive.
+  Negative
+561fdaa31c48820ce8839243	X	I am trying to access an external bucket over the Amazon S3 API through .
+  Negative
+Net / C#.
+  Neutral
+I already tried the login with a 3rd party tool which worked like a charm, now I want to get the items of the bucket inside the framework.
+  Negative
+I am using this behind a Proxy, that's why I am using the S3config.
+  Negative
+that's the way I establish the connection itself to amazon.
+  Positive
+I also already tried placing into the config object initializer because I am in EU and the bucket is located somewhere in US.
+  Negative
+When I now try to access via : or or I only get Access Denied in the error object that is thrown.
+  Negative
+The credentials I use are 100% the same as in the 3rd party tool.
+  Negative
+Am I missing something here ?
+  Negative
+do I need to use any special way which I just can't find to make it work ?
+  Negative
+a working python snippet is: this returns correct results, so the actual connection works and also the credentials.
+  Positive
+561fdaa31c48820ce8839244	X	This is the code I'm using to return a list of files in a "directory" in my bucket and I know it definitely works.
+  Positive
+I says directory but actually there isn't such thing.
+  Negative
+My understanding of S3 is each file/folder is an object.
+  Negative
+Each object has a key.
+  Neutral
+Key determines where in the tree you will see a folder or file.
+  Negative
+A key Folder1 I believe will be a Folder called Folder1 at the route.
+  Negative
+An object with a key Folder1/File1.
+  Positive
+txt would be a file in Folder1.
+  Negative
+If other clever people have more to say or corrections, I'm sure they will tell me.
+  Negative
+But, the code does work.
+  Neutral
+561fdaa31c48820ce8839245	X	After using the given answers as a new base for research I figured out, that I have to give a serviceurl, a regionendpoint and a communicationprotocol for the S3Config Class on the one side and, because I knew the exact name of the file within the bucket, I needed to use getobject and not an access to the bucket.
+  Very negative
+so the code that got me working is:
+561fdaa31c48820ce8839247	X	Sounds promising, will check it out!
+  Very positive
+561fdaa31c48820ce8839248	X	Is there a way (API call) to know the current time on an Amazon S3 server?
+  Negative
+Here is a bit of background to explain why I need this: I have an iphone app that sometimes has to download a set of files from a bucket on a Amazon AWS S3 account.
+  Negative
+Between two such downloads, the server files may be modified by a CMS (Web Content Management System), or not.
+  Negative
+So, when a second download occurs, The client app tries to be efficient by downloading only the files that have been modified on the server since the previous such download.
+  Negative
+To achieve this, the app stores the date of the last download and when a new download occurs, it just focuses on the files that have been modified on the server since the date of the last download (using there “modified date” property accessible using the SDK listObjects() function).
+  Negative
+The problem with this is that the date on the phone and the modified dates on the s3 server may not be compatible.
+  Negative
+The phone user may have changed his phone date & time settings, etc.
+  Negative
+To make this work, the saved “last download date” should come from an Amazon S3 API call to make sure all dates used by the app logic are in sync.
+  Negative
+Is there such thing?
+  Neutral
+Or maybe an alternative or a workaround?
+  Neutral
+561fdaa31c48820ce8839249	X	You could use a file hash instead of the modified date.
+  Negative
+An Amazon S3Object has an etag property that is indeed such kind of hash.
+  Negative
+You retrieve this property the same way as you access date.
+  Neutral
+Have your client device save this hash along with the file.
+  Neutral
+The next time you connect to the server, ask for the etag using the method about and compare the returned value to your local copy.
+  Negative
+A different etag value will indicate to the client that the file has changed since the last download.
+  Negative
+This approach would be completely independent of any datetime functionality.
+  Negative
+561fdaa31c48820ce883924b	X	Here's the source.
+  Neutral
+Fork it.
+  Neutral
+?
+  Neutral
+561fdaa31c48820ce883924c	X	I have a JAR file - jets3t-0.7.4.jar, by which I can access Amazon's S3 storage.
+  Negative
+I need to modify its source code so that it accesses Ceph object storage instead.
+  Negative
+I know it can done by modfying the S3 API, but do not know how.
+  Negative
+Does anyone know how to do this?
+  Neutral
+I googled for information, but didn't really find anything informative.
+  Negative
+Any help is appreciated.
+  Positive
+Thanks!
+  Positive
+561fdaa31c48820ce883924d	X	
+561fdaa31c48820ce883924f	X	thanks for the link but at my work we use CF 8 .
+  Negative
+.
+  Neutral
+any suggestions?
+  Neutral
+561fdaa31c48820ce8839250	X	Edited answer - lo and behold there is a CFC for that :)
+561fdaa31c48820ce8839251	X	thanks for that link I'll take a look at it :)
+561fdaa31c48820ce8839252	X	I went to that site amazons3.riaforge.org was not really to useful for me, and the second link you provided comes up as "access denied".
+  Negative
+But thank you for trying to help.
+  Positive
+561fdaa31c48820ce8839253	X	The second links was an example of how you can just directly link to S3 files once you've uploaded them - provided you've set the proper security.
+  Negative
+561fdaa31c48820ce8839254	X	Also, why wasn't the RIAforge.org content useful?
+  Negative
+561fdaa31c48820ce8839255	X	ok your right that makes sense in regards to the second link.
+  Positive
+and I'm just not understanding the information on RIAforge.org, nothing against the site, I'm just having issues trying to find the simplest method to write out a code.
+  Negative
+561fdaa31c48820ce8839256	X	I am having a problem trying to figure out what is the proper coldfusion code to upload a simple file into amazon s3 api.
+  Negative
+Any help is much appreciated!!!
+  Neutral
+561fdaa31c48820ce8839257	X	There is a good tutorial here.
+  Positive
+You'll need CF 9.0.1 however.
+  Negative
+Prior to CF 9 you might be able to use this CFC that Barney Boisvert wrote.
+  Negative
+561fdaa31c48820ce8839258	X	Try this CFC: http://amazons3.riaforge.org/ Also, note that you may also access your objects via: http://bucketname.s3.amazonaws.com/name-of-the-object (example)
+561fdaa31c48820ce883925a	X	I'm trying to upload a file to my s3 using the php sdk and for each file I'm setting the ConentDisposition and ContentType just as the documentation says (http://docs.aws.amazon.com/aws-sdk-php/latest/class-Aws.S3.S3Client.html#_putObject), but after uploading I look at the http header for the file and the only thing set is Content-Type and that's set to the default 'octet-stream':
+561fdaa31c48820ce883925c	X	Have you tried something?
+  Negative
+561fdaa31c48820ce883925d	X	yes, i am getting results but in it shows in ascending order of lastmodiffied date
+561fdaa31c48820ce883925e	X	Then you should add your own code here first.
+  Negative
+561fdaa31c48820ce883925f	X	There is not much to add as it is just an api call, I have added above.
+  Negative
+561fdaa31c48820ce8839260	X	You can do it manually.
+  Positive
+Getting no reference in the docs.
+  Negative
+561fdaa31c48820ce8839261	X	I need to list objects from Amazon s3 in order such that latest uploaded objects should be listed on top ?
+  Negative
+How it can be done ?
+  Neutral
+There is not option to sort it above ?
+  Negative
+Below is my code, Below is my output, If you see LastModified 'LastModified' => string '2010-10-05T23:00:50.000Z' is displayed first and then 'LastModified' => string '2010-10-06T23:00:50.000Z' How do I sort it in descending order of LastModified ?
+  Negative
+561fdaa31c48820ce8839263	X	Sounds as if the OP is looking to become your competition then, rather than opting in to your service ;S
+561fdaa31c48820ce8839264	X	I would like to implement a cloud storage service with the same interface of OpenStack Swift or Amazon S3.
+  Negative
+In other words, my cloud storage service should expose the same API of the above-mentioned services but with a custom implementation.
+  Negative
+This way, a client will be able to interoperate with my service without changing its implementation.
+  Positive
+I was wondering if there is an easier approach than manually implementing such interfaces starting from the documentation: http://docs.openstack.org/api/openstack-object-storage/1.0/content/ http://docs.aws.amazon.com/AmazonS3/latest/API/APIRest.html For instance, it would be nice if there was a "skeleton" of OpenStack Swift or Amazon S3 APIs from which I can start implementing my service.
+  Negative
+Thanks
+561fdaa31c48820ce8839265	X	I found exactly what I was looking for: These tools emulate most of Amazon S3 API.
+  Negative
+They are meant for development and test purposes but in my case I can use them as a starting point for implementing my cloud storage service.
+  Negative
+561fdaa31c48820ce8839266	X	Someone has done this for you, try jcloud, it supports AWS S3 and swift http://jclouds.apache.org/guides/providers/
+561fdaa31c48820ce8839267	X	If you are looking for an enterprise / carrier grade object storage software solution, look at Cloudian http://www.cloudian.com.
+  Negative
+Cloudian's software delivers a fully Amazon S3 compliant API, meaning that it delivers the broadest range of S3 feature coverage and 100% fidelity with the AWS S3 API.
+  Positive
+The software comes with a Free 10TB license, so pretty much it is free up to 10TB of managed storage, after that it is reasonably priced.
+  Positive
+You can install the software in any x86 hardware running Linux.
+  Negative
+Cloudian does not support the Swift API though.
+  Negative
+[Disclaimer: I work for Cloudian]
+561fdaa31c48820ce883927a	X	Here's one way: Now convert to a data.frame:
+561fdaa31c48820ce8839268	X	I would recommend using Swift (Openstack object store ) which also supports S3 API Take a look at the following link: http://docs.openstack.org/grizzly/openstack-object-storage/admin/content/configuring-openstack-object-storage-with-s3_api.html This way you can work with openstack swift or Amazon S3
+561fdaa31c48820ce8839269	X	Another option is libcloud, it is a python abstraction that supports a number of providers (including S3 and Swift): https://libcloud.readthedocs.org/en/latest/storage/index.html http://libcloud.apache.org/
+561fdaa31c48820ce883926b	X	Is there any way to set the file permission at the time of uploading files through Amazon S3 API.
+  Very negative
+In my current solution i am able to upload the file on my bucket but i can not view the file through the URL which is mentioned in the file properties section.
+  Negative
+It is opening when i am passing access keys in query string.
+  Neutral
+Is there any settings required in Amazon S3 or i need to set the permissions to all the file at the time of upload.
+  Negative
+Thanks in Advance.
+  Neutral
+Kamal Kant Pansari
+561fdaa31c48820ce883926c	X	Add a header to your PUT request: x-amz-acl: public-read
+561fdaa31c48820ce883926d	X	You can also use Bucket Policies feature.
+  Negative
+Here is an example of bucket policy that instructs amazon s3 to make all of the files publicly available, including new files you will upload: Replace your.bucket.name with your actual bucket name You can view and edit Bucket Policies with S3 Browser Freeware.
+  Negative
+You can find more Bucket Policies examples here.
+  Negative
+561fdaa31c48820ce883926e	X	In C# when you create a response object of >mazon then in response method you will find Addheader.
+  Negative
+You need to set header as Amazon providing these methods in its web services API kindly refer that.
+  Negative
+561fdaa31c48820ce8839270	X	Do you have code and a publicly accessible URL that could be used for testing?
+  Negative
+561fdaa31c48820ce8839271	X	I found one of similar construction.
+  Positive
+See if the combination of reading directly from the GET value and using colClasses= improves performance.
+  Positive
+561fdaa31c48820ce8839272	X	You can split on "\\r\\n" instead if it's going to return the Windows line endings as in the example.
+  Negative
+561fdaa31c48820ce8839273	X	Hmm, thanks for that, is there a way to quickly remove \r bit too?
+  Negative
+...but eitherway the file is quite large >75MB and so data transforms from character to data.frame like that seem to take a long time....so its not the ideal solution at the moment, given that the s3 data has already been uploaded as a csv file...am still hoping for the parameter values to adjust the API request to just download the data.
+  Negative
+561fdaa31c48820ce8839274	X	Replace strsplit( test, "\\n" ) with strsplit( test, "\\r\\n" ), or just `gsub( "\\r", "", test) before you run any of the other code.
+  Negative
+I'm not sure what you mean by "just download the data," as it seems to me that what it gave you is the data, in comma-separated form.
+  Negative
+561fdaa31c48820ce8839275	X	perhaps I should have said "just download the file" rather than getting the data in comma separated form...from the get request...
+561fdaa31c48820ce8839276	X	So much better than my attempts to reinvent the wheel.
+  Negative
+Likely faster too.
+  Positive
+561fdaa31c48820ce8839277	X	that simple solution works out quite well actually...but now the biggest holdup appears to be at the conversion of the response to the character string...using content...the code I am currently using is x <- GET(end.point, add_headers(Date=time.string,Authorization=authorization.string), query=params) y <- read.csv(text=content(x)) any ideas on how to speed that up?
+  Negative
+561fdaa31c48820ce8839278	X	My guess is that the server response is quite a bit slower than the read.csv step.
+  Negative
+Have you profiled it with system.time?
+  Neutral
+(Also: Using colClasses is known to speed up all read.
+  Neutral
+* functions.)
+  Neutral
+561fdaa31c48820ce8839279	X	I would like to be able to download a .
+  Negative
+csv file from my Amazon S3 bucket using R. I have started using the API that is documented here http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectGET.html I am using the package httr to create the GET request, I just need to work out what the correct parameters are to be able to download the relevant file.
+  Negative
+I have set the response-content-type to text/csv as I know its a .
+  Negative
+csv file I hope to download...but the response I get is as follows: And no file is downloaded and the data seems to be in the response...I can extract the string of characters that is created in the response, which represents the data, and I guess with some effort it can be converted into a data.frame as originally desired, but is there a better way of downloading the data...straight from the GET command, and then using read.csv to read the data?
+  Very negative
+I think that it is a parameter issues...just not sure what parameters need to be set for the file to be downloaded.
+  Negative
+If people suggest the conversion of the string...This is the structure of the string I have...what commands would I need to do to convert it into a data.frame?
+  Negative
+Thanks HLM
+561fdaa31c48820ce883927b	X	The answer to your second question: If you want extra speed for the read.csv, try this: Assuming the URL is set up properly (and we have nothing to test this on yet) I'm wondering if you may want to look at the value for GET( ...)$content Perhaps: That was not correct because the data comes across as "raw" format.
+  Negative
+One needs to convert from raw before it will become encoded as text.
+  Negative
+I did a quick search of Nabble (it must be good for something after all) to find a csv file that was residing on the Web.
+  Negative
+This is what finally worked:
+561fdaa31c48820ce883927d	X	What are you passing in for an Authorization header?
+  Negative
+561fdaa31c48820ce883927e	X	Thanks @Jason.
+  Neutral
+Header is 1.
+  Neutral
+Connection Request Host: s3.amazonaws.com Date: x-amz-content-sha256:e3b855 Authorization: AWS4-HMAC-SHA256 Credential=XXX/20150618/us-east-1/s3/aws4_request, SignedHeaders=date;host;x-amz-content-sha256, Signature=ec7518 Canonical Request: GET 2.
+  Very negative
+For Getting the Contents Host: balas3bucke01.s3-ap-southeast-1.
+  Neutral
+amazonaws.com Date: x-amz-content-sha256:e3b*855 Authorization: AWS4-HMAC-SHA256 Credential=XXX/20150618/ap-southeast-1/balas3bucke01/aws4_request, SignedHeaders=date;host;x-amz-content-sha256, Signature=fd**1429 Please let me know where am i going wrong
+561fdaa31c48820ce883927f	X	I am using Amazon S3 REST API for listing the contents of my bucket.
+  Very negative
+I am able to establish a connection and get the list of my buckets with request URL being "https://s3.amazonaws.com" and http_request_type = "GET".
+  Neutral
+However when I try to list the contents of the bucket I am getting an error AuthorizationHeaderMalformed The authorization header is malformed; incorrect service "balas3bucke01".
+  Negative
+This endpoint belongs to "s3".
+  Positive
+balas3bucke01 is the name of the bucket.
+  Neutral
+My request URL is https://balas3bucke01.s3-ap-southeast-1.amazonaws.com http_request_type = "GET" Why am I getting the above error.
+  Negative
+561fdaa31c48820ce8839281	X	Go for the SDK.
+  Neutral
+I'm using C++ (which doesn't have an SDK) and I go to the extreme of using embedded python and the python SDK rather than using the REST API.
+  Negative
+There's just no point spending time implementing, debugging and maintaining something which is already done.
+  Negative
+Also Amazon's REST API is badly documented and often not intuitive.
+  Negative
+561fdaa31c48820ce8839282	X	I think it's very valuable to be able to use a little bit of the REST API directly, so you understand what's going on.
+  Positive
+But I would use the SDK for real work.
+  Negative
+561fdaa31c48820ce8839283	X	Thanks guys for your suggestion.
+  Positive
+I would be going for SDK only.
+  Neutral
+561fdaa31c48820ce8839284	X	Thanks Sid for your answer!
+  Negative
+561fdaa31c48820ce8839285	X	I have to use Amazon S3 to upload some static contents programmatically in Java.
+  Negative
+When I started reading I found that the way to do is either through their SDK (wrapper over REST APIs) or using REST APIs.
+  Negative
+From Amazon's AWS website, found this: "You can send requests to Amazon S3 using the REST API or the AWS SDK".
+  Negative
+Wanted to understand that which approach is better.
+  Positive
+I think using SDK will definitely make programming easier, but what are the pros and cons of using SDK Vs Rest APIs directly.
+  Neutral
+For some reason, I found using REST API directly more difficult than SDK.
+  Negative
+I was able to do basic things using SDk - create bucket, list objects, get object, invalidate cache etc.
+  Negative
+But was having some hard time writing the code for REST API - especially generating the signature.
+  Negative
+May be it will not matter much, if I ultimately use SDK, but I would still like to know how to do it using REST APIs.
+  Negative
+If anyone has some good code examples in Java on adding objects, get objects, get list etc, it would be very helpful.
+  Negative
+Thanks!
+  Positive
+561fdaa31c48820ce8839286	X	If you already have the SDK in your language, go for it; it's a no-brainer from a project perspective.
+  Negative
+The SDK is additional engineering that they have already done and tested for you at no additional cost.
+  Negative
+In other words, the SDK is already converting the HTTP REST API into the application domain/language for you.
+  Negative
+Think of the REST API as a the lowest common denominator that AWS must support and that the SDK (likely) as implementing the REST API below it.
+  Negative
+In some cases (eg: some Windows Azure SDKs), the SDKs are actually more efficient because they switch to a TCP based communications channel instead of REST (which is TCP plus HTTP), which eliminate some of the HTTP overhead Unless your entire goal is to spend additional time (development + testing) just to learn the underlying REST API, I'd vote SDK.
+  Negative
+561fdaa31c48820ce8839288	X	Hi do you have sample code for file uploading to amazon s3 using REST API in java.
+  Negative
+.
+  Neutral
+Please send me if you have it....
+561fdaa31c48820ce8839289	X	I'm trying to implement an HTML5 Amazon S3 uploader (by using the REST API), and stumbled upon the following issue: when trying to upload a small, text file, everything works like a charm.
+  Neutral
+When trying to upload a binary file, the file gets bigger on S3, and, obviously, corrupted.
+  Negative
+Here's what I'm doing: Also, I've tried to create a 10mb file with text (10 million lines of 0123456789) and that one works correctly.
+  Positive
+If anyone has a solution to this problem, or stumbled upon it, let me know.
+  Negative
+561fdaa31c48820ce883928a	X	It seems StackOverflow is also good for figuring things out yourself -- I've fixed it just as I finished putting my ideas down.
+  Very negative
+It seems the xhr.send() method can receive the file.slice() blob directly, so no need for FileReader.
+  Negative
+I hope this helps other people that stumble upon this issue.
+  Positive
+561fdaa31c48820ce883928c	X	I am facing some problems with the thingiverse api at uploading images to the amazon s3 storage.
+  Negative
+At step 3 of the file upload guide, amazon always answers with {"error":"Unauthorized"}.
+  Negative
+Do you have any hints for me, what I might be doing wrong?
+  Negative
+This is what i have done: Send a POST request to http://api.thingiverse.com/things/629436/copies/ with content: The response is: So I send a request to https://thingiverse-production-new.s3.amazonaws.com/ with body: The response I get is: {"error":"Unauthorized"}.
+  Negative
+Am I missing any authentication fields?
+  Negative
+I also tried altering the order of the multipart/formdata parameters.
+  Negative
+I tried the one i got from the thingiverse api respone as well as the on in the file upload guide.
+  Negative
+Any help appreciated!
+  Positive
+561fdaa31c48820ce883928e	X	This class is NOT from Amazon.
+  Negative
+This is a third-party class.
+  Positive
+561fdaa31c48820ce883928f	X	I have a website hosted on amazon.
+  Negative
+I want my clients to give access to upload files that are already in their amazon s3 space to my s3 space.
+  Negative
+Is there any php API that supports this functionality?
+  Negative
+561fdaa31c48820ce8839290	X	Amazon actually provides one.
+  Positive
+And there are lots of examples on the web of using it.
+  Negative
+Google is your friend.
+  Neutral
+561fdaa31c48820ce8839291	X	Amazon providing one PHP API for uploading files to s3 bucket.
+  Negative
+its a single php file named s3.php You just download that and from your code .
+  Negative
+for more read this.
+  Neutral
+561fdaa31c48820ce8839293	X	Why does it not look possible?
+  Negative
+It is just a REST API after all.
+  Negative
+561fdaa31c48820ce8839294	X	To the best of my knowledge the only Cocoa/Cocoa Touch based toolkit for accessing S3 is ConnectionKit.
+  Negative
+Otherwise you are stuck with building your own, which could become quite a complex task.
+  Negative
+May I ask which bits of the API you require?
+  Neutral
+The current release of ConnectionKit does support S3 but is a bit ropey.
+  Negative
+We're currently in the process of writing the 2.0 version.
+  Negative
+If we have someone to work with specifically for one protocol, we could focus purely on that for now to our mutual benefit.
+  Negative
+Please contact me at mikeabdullah.net/other/contact_me.html for further discussion if interested
+561fdaa31c48820ce8839295	X	The reason why it appears not possible is that each authenticated request to S3 servers needs to have a RFC 2104HMAC-SHA1 signature generated and sent along with the request.
+  Negative
+To my knowledge, there is currently no way to do this on the iPhone.
+  Negative
+Am I incorrect or just missing something?
+  Negative
+561fdaa31c48820ce8839296	X	On the iPhone there is CCHMAC(3) which offers the required functionality
+561fdaa31c48820ce8839297	X	Thanks Mike.
+  Negative
+No sooner did I write my last comment I came across that exact library.
+  Negative
+I hadn't realized it was in there.
+  Negative
+That's exactly what I am going with.
+  Negative
+Thank you again!
+  Positive
+561fdaa31c48820ce8839298	X	I think you're a little confused.
+  Negative
+NSConnection is for Distributed Objects.
+  Negative
+Very different to NSURLConnection!
+  Positive
+561fdaa31c48820ce8839299	X	Yes, you're right, I meant NSURLConnection.
+  Positive
+Will update answer.
+  Neutral
+561fdaa31c48820ce883929a	X	Does anyone have any suggestions for GETing from or POSTing to Amazon S3 services using their REST API via the iPhone.
+  Negative
+It does not look like it is possible but I may be reading the docs wrong.
+  Negative
+Thank you in advance for your help!
+  Positive
+L.
+561fdaa31c48820ce883929b	X	In a general case I'd recommend to use ASIHttpRequest, it has a lot of built-in functionality (REST compatible too) and a lot of things, making life easier than with NSURLConnection.
+  Negative
+It also has S3 support out of box.
+  Negative
+561fdaa31c48820ce883929c	X	You should be able to use the NSURLRequest stuff to do what you want.
+  Positive
+This doesn't have any error checking in it and the _data variable should be stored in an instance variable, but the general idea should work for you.
+  Negative
+You will probably also need to set some request headers to tell the server what encoding the body data is in and so on.
+  Negative
+561fdaa31c48820ce883929e	X	Thank you vey much for the response, there might be one more approach to communication the keys with the iphone online every time with some encryption, but again when its going to the client there is no way guarantee of its security.
+  Negative
+As it is said: "The only secure computer is one that's unplugged, locked in a safe, and buried 20 feet under the ground in a secret location... and I'm not even too sure about that one"
+561fdaa31c48820ce883929f	X	I'm able to upload files from iPhone using ASIHTTPRequest wrapper for an application which allows simple storage to my account.
+  Negative
+The question i'm concerned about is, could distributing the access keys along with the application be a good idea?
+  Negative
+what is the best way to deal with it in terms of security?
+  Positive
+are the keys i use sniffable via monitors over https?
+  Negative
+any suggestions over it will be appreciated.
+  Neutral
+561fdaa31c48820ce88392a0	X	I upload files to a server (using ASIHTTPRequest) and then from the server to an AWS account for this very reason.
+  Negative
+I can control the security on the server much easier than I can on devices.
+  Negative
+Plus, if I need to change the keys I can do it on the server very quickly.
+  Negative
+This will add another layer to your application but I think it's well worth it.
+  Positive
+You can also check out this post Architectural and design question about uploading photos from iPhone app and S3
+561fdaa31c48820ce88392a2	X	Uploading a file directly to S3 is not really a trivial task, especially if you want to support chunking, auto-resume, user metadata, etc, etc.
+  Very negative
+The policy stuff can be quite complex.
+  Positive
+Consider using a library I maintain: Fine Uploader.
+  Negative
+It has native support for direct uploads to S3 in all browsers, even IE7.
+  Negative
+Chunking and auto-resume, among other features, are also supported.
+  Positive
+Furthermore, I wrote a node.js server-side example myself that, when paired with Fine Uploader S3, will handle all signatures for you.
+  Negative
+561fdaa31c48820ce88392a3	X	can you post this comment as an answer?
+  Neutral
+i may end up using your library.
+  Neutral
+still evaluating how it works, etc.
+561fdaa31c48820ce88392a4	X	I'm not sure that will go over well.
+  Negative
+It may be considered a poor or link-only answer, quite frankly.
+  Negative
+My understanding is that the community is looking for details answers that include code, and mine doesn't fit that description, which is why I posted it as a comment.
+  Negative
+If you do have any questions about Fine Uploader, have a look at the fine-uploader tag on SO though, where we handle support questions for the library.
+  Negative
+561fdaa31c48820ce88392a5	X	THANK YOU!
+  Positive
+This code helped me out.
+  Neutral
+Some quick comments: To format the date I used moment.js like so : moment.utc(expirationDate).
+  Negative
+format('YYYY-MM-DD')+'T'+moment.utc(expirationDate).
+  Negative
+format('HH:mm:ss.SSS')+'Z'.
+  Negative
+Also for buffers 'utf8' (note: no hyphen) is default encoding so I think "utf-8" is incorrect and extraneous.
+  Negative
+561fdaa31c48820ce88392a6	X	@Zugwalt, you could simplify that quite a bit with moment's built in formatting.
+  Negative
+moment.utc(expirationDate).
+  Neutral
+toISOString()
+561fdaa31c48820ce88392a7	X	@Jonathan even better!
+  Negative
+Thanks!
+  Positive
+561fdaa31c48820ce88392a8	X	I'm trying to get an built that allows users to upload a file directly to my Amazon S3 bucket, from a NodeJS powered website.
+  Negative
+It seems the only tutorials out there, other than the actual amazon docs for this are all very out of date.
+  Negative
+I've been following this tutorial, for the basic info, but again it's out dated.
+  Negative
+It doesn't have the method calls to crypto correct, as it tries to pass a raw JavaScript object to the update method, which throws an error because it's not a string or buffer.
+  Negative
+I've also been looking at the source for the knox npm package.
+  Negative
+It doesn't have POST support built in - which I totally understand, because it's the browser doing the POST once it has the right fields.
+  Negative
+Knox does appear to have the right code to sign a policy, and I've tried to get my code working based on this... but again to no avail.
+  Negative
+Here is what I've come up with, for code.
+  Neutral
+It produces a base64 encoded policy, and it creates a signature... but it's the wrong signature according to Amazon, when I try to do a file upload.
+  Negative
+I'm obviously doing something wrong, here.
+  Negative
+But I have no idea what.
+  Negative
+Can anyone help identify what I'm doing wrong?
+  Negative
+Where my problem is?
+  Negative
+Does anyone have a working tutorial for how to generate a proper Amazon S3 Policy, with signature, from NodeJS v0.10.x, for a POST to the s3 REST api?
+  Neutral
+561fdaa31c48820ce88392a9	X	Ok, I finally figured it out.
+  Negative
+After playing the random guessing game for a VERY long time, I thought to myself "maybe i need to sign the base64 encoded policy" - me and BAM that was it.
+  Negative
+I also re-ordered the conditions to match how the form is posting, though I'm not sure this makes a difference.
+  Negative
+Hopefully this will help others that run in to the same problem.
+  Negative
+561fdaa31c48820ce88392aa	X	I modified a bit previous example, because it didn't work for me: amazon returned an error about broken signature.
+  Negative
+Here is how the signature should be created for Browser-Based Uploads Using POST (AWS Signature Version 4) http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html  Next generated base64Policy and s3Signature i used in the form for uploading.
+  Negative
+Example is here: http://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-post-example.html Very important is to check that you have the same fields and values in the html form and in your policy.
+  Positive
+561fdaa31c48820ce88392ac	X	why you add fileOwnerId to stringToSign?
+  Negative
+561fdaa31c48820ce88392ad	X	Thanks for your reply @okwap .
+  Negative
+I have added that because thats the way i have saved files on s3.
+  Negative
+like bucketname/username/file.
+  Neutral
+txt
+561fdaa31c48820ce88392ae	X	I am trying to delete amazon s3 object using rest API but not getting any success.
+  Very negative
+I have created the URL(signed url) at server side using java and then made XHR request to that URL at client side(i.e. from browser).
+  Negative
+Java code that i have used to sign the url: And at client side: Using this code for downloading an object from amazon s3 bucket works fine by replacing 'DELETE' request with 'GET'.
+  Neutral
+But delete is not working.
+  Negative
+I have searched a lot but there is very less help available for rest API.
+  Negative
+561fdaa31c48820ce88392af	X	Finally, i integrated the aws sdk to delete the object from amazon s3 bucket and it works like lightning.
+  Negative
+But unable to get help doing it with rest API.
+  Negative
+So now i have used rest API for uploading and downloading and the sdk for deleting an object.
+  Negative
+561fdaa31c48820ce88392b1	X	moved to Amazon EC2 and the connection speed DRAMATICALLY increased .
+  Negative
+Though this still alludes me as to why it would be so slow on a non EC2 instance
+561fdaa31c48820ce88392b2	X	Because their operate on the same network (your Ec2 instance and S3)
+561fdaa31c48820ce88392b3	X	Been trying to figure out why uploading to Amazon S3 is amazingly slow using the putObject command (node.js library).
+  Very negative
+The code below reads an entire directory of files and puts them to S3 asynchronously.
+  Negative
+Tested with a number of different folders with similar results.
+  Neutral
+Uploading the same files using the AWS web interface takes around 3 sec to complete (or less).
+  Negative
+Why is using the node.js API so slow??
+  Negative
+As per Amazon documentation I've even tried spawning multiple children to handle each upload independently.
+  Negative
+No changes in upload speed.
+  Neutral
+561fdaa41c48820ce88392b5	X	I am looking to upload images to amazon S3 using the rest api that they provided.
+  Negative
+I got to know how to calculate the signing key for SigV4 from this document.
+  Negative
+This documentation tells you how the request should be signed.
+  Neutral
+But I find it highly confusing as to what should be signed and where should the cannonical request be placed?
+  Negative
+Should it be placed in a separate header in the request?
+  Neutral
+Is there a working example/sample to use SigV4 rest api using java?
+  Negative
+561fdaa41c48820ce88392b6	X	If you have a very specific reason for not using the provided SDK, the quickest path to getting this working it to look at how the requests are performed in a library where this is already working.
+  Negative
+You can look at the Java SDK itself to figure this out, but that's a bit dense.
+  Negative
+Here is my favorite, although I think it's on sig v3: http://geek.co.il/2014/05/26/script-day-upload-files-to-amazon-s3-using-bash You can find out similar examples for v4: http://geek.co.il/2014/11/19/script-day-amazon-aws-signature-version-4#footnote_0_33255 You can see how everything is compute and what is to be passed in the headers in very few lines of code.
+  Negative
+EDIT Look at http://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-examples-using-sdks.html#sig-v4-examples-using-sdk-java for exactly what you are looking for.
+  Neutral
+It has the bare minimum to get this going in java.
+  Negative
+561fdaa41c48820ce88392b8	X	Thank you @Lucas Polonio.
+  Negative
+I heard about this gem, but I wanted to use the aws sdk.
+  Neutral
+561fdaa41c48820ce88392b9	X	Im developing a website with AngularJS in frontend that sends requests to a Rails 4 API backend.
+  Negative
+I have to manage quite images, so I would like to use Amazon S3 (but Im newbie with this and Im a bit lost).
+  Negative
+Before using S3, I used an angular directive to upload images to Rails.
+  Negative
+Rails got this image and stored it in a path in the server.
+  Positive
+Something like this: where photo is the image uploaded to rails: Im trying to do the same but instead of storing the photo in the Rails server, I would like to do it in S3.
+  Negative
+Im doing something like this (but I recognize, I dont completely understand how it works, so for sure something is wrong).
+  Negative
+This is my code with S3: Im getting this error: Im confused with the concepts of key and file name.
+  Very negative
+Is the key the path where I would like to store my image in S3?
+  Negative
+561fdaa41c48820ce88392ba	X	It works.
+  Positive
+I had just need to replace the obj.write(Pathname.new(key)) with obj.write(photo)
+561fdaa41c48820ce88392bb	X	Good that your solution worked.
+  Negative
+Anyway, you could take a look at the paperclip gem.
+  Positive
+It handles file uploads with lots of features, including automatically uploading to S3.
+  Negative
+561fdaa41c48820ce88392bd	X	Can I send Large file with it?Not Archive just single file
+561fdaa41c48820ce88392be	X	Yes, I see no difference between archives and other file types.
+  Negative
+The only difference comparing to your multipart-upload may be that if something happens (connection lost) during upload - you have to start from scratch.
+  Negative
+But that's a rare case and was completely fine for us (retry policy handled this).
+  Positive
+561fdaa41c48820ce88392bf	X	Thank you so much
+561fdaa41c48820ce88392c0	X	you're a lifesaver!
+  Very positive
+561fdaa41c48820ce88392c1	X	I am using Amazon S3 Low Level API for uploading Large Video File, I am following This link When I am upoading the file, its giving me exception I have checked Inner Exception and its saying this at this line and this is how I am making my S3Client I also tried changing bucketname like bucketname/filename.
+  Very negative
+mp4,but its giving exception I also tried some other file(doc and pdf) it is also giving XML exception.
+  Negative
+Is there any good alternate approach for uploading Large Video files(Around 200-500MB)?
+  Negative
+561fdaa41c48820ce88392c2	X	I used to send archives to S3 (around 100-300MB).
+  Negative
+My code looked like this: That's it basically.
+  Neutral
+I had retry-policy and exception handling around that, but this is the core.
+  Neutral
+So just simple PutObject function without any multipart uploads works find for such file-sizes.
+  Negative
+561fdaa41c48820ce88392c3	X	I've found a similar problem during a MultiPart upload using the sample code in the doc.
+  Negative
+I've found that the ETag list is mandatory for the CompleteMultipartUpload part - which is not in the documentation sample.
+  Negative
+This link has a better explanation of the multi-part upload process: s3 multipart upload
+561fdaa41c48820ce88392c5	X	Are you sure the bucket and key are correct?
+  Negative
+561fdaa41c48820ce88392c6	X	Did you find a solution for this?
+  Neutral
+I have the exact same problem
+561fdaa41c48820ce88392c7	X	I'm using the s3_direct_upload gem to store images and videos on Amazon s3.
+  Negative
+When the image or video is changed or deleted, I want to nuke the old image or video on s3 and save everyone money and space.
+  Negative
+This solution uses the V1 Aws SDK and is no longer valid: http://blog.littleblimp.com/post/53942611764/direct-uploads-to-s3-with-rails-paperclip-and This solution deletes files that were initially uploaded in a batch, but does nothing for the final files post-processing: github - waynehoover/s3_direct_upload Here is the Aws v2 SDK doc, which seems clear enough: http://docs.aws.amazon.com/sdkforruby/api/Aws/S3/Client.html#delete_object-instance_method Yet this solution: ...returns only: (And the file is still available on s3 at the original url.)
+  Negative
+Thoughts?
+  Neutral
+Hasn't everyone had to do this?
+  Negative
+561fdaa41c48820ce88392c8	X	I've written code using the v2 SDK to delete objects from S3.
+  Negative
+Here is a sample from my codebase: It looks similar to yours, so I don't think that this code is the issue.
+  Negative
+Have you confirmed your bucket & key names and ensured that your method is actually being called?
+  Neutral
+561fdaa41c48820ce88392ca	X	What is s3 galcier?
+  Negative
+I know s3 and I know glacier but what is s3 glacier?
+  Negative
+561fdaa41c48820ce88392cb	X	Python package boto is offering such an API too: boto.readthedocs.org/en/latest/ref/glacier.html
+561fdaa41c48820ce88392cc	X	I want to list all the object on amazon glacier.
+  Negative
+So that i can restore require object from glacier.
+  Negative
+Is there any amazon api to list all object on glacier.
+  Negative
+561fdaa41c48820ce88392cd	X	Check this: http://docs.aws.amazon.com/amazonglacier/latest/dev/using-aws-sdk.html These APIs are only supported via AWS JAVA SDK and .
+  Negative
+NET SDK.
+  Neutral
+And also check the Glacier API Documentation: http://docs.aws.amazon.com/amazonglacier/latest/dev/amazon-glacier-api.html
+561fdaa41c48820ce88392cf	X	Can you script it with awscli or s3cmd, rather than write it in Java?
+  Negative
+Using Java seems heavy-handed here.
+  Negative
+561fdaa41c48820ce88392d0	X	The things haven't changed in this regard.
+  Negative
+People have developed libraries that make use of the s3 apis and parallelize the uploads.
+  Neutral
+561fdaa41c48820ce88392d1	X	@TJ- Can you provide an example?
+  Neutral
+561fdaa41c48820ce88392d2	X	github.com/tj---/s3-parallel
+561fdaa41c48820ce88392d3	X	does it spawn n upload processes performed in parallel or does it spawn a single upload process for all of the objects (therefore needing only one connection)?
+  Negative
+I hope it's the latter
+561fdaa41c48820ce88392d4	X	It performs N independent uploads - how many will be executed at a time depends on what kind of ExecutorService you pass to the constructor.
+  Neutral
+S3 does not expose a way to upload multiple objects in a single HTTP request besides manually zipping them up.
+  Negative
+And even then you'd probably want to do a multi-part upload and split the zip over multiple HTTP requests so if there's a transient failure halfway through you don't have to start the whole upload over from scratch...
+561fdaa41c48820ce88392d5	X	We're looking to begin using S3 for some of our storage needs and I'm looking for a way to perform a batch upload of 'N' files.
+  Very negative
+I've already written code using the Java API to perform single file uploads, but is there a way to provide a list of files to pass to an S3 bucket?
+  Negative
+I did look at the following question is-it-possible-to-perform-a-batch-upload-to-amazon-s3, but it is from two years ago and I'm curious if the situation has changed at all.
+  Positive
+I can't seem to find a way to do this in code.
+  Negative
+What we'd like to do is to be able to set up an internal job (probably using scheduled tasking in Spring) to transition groups of files every night.
+  Negative
+I'd like to have a way to do this rather than just looping over them and doing a put request for each one, or having to zip batches up to place on S3.
+  Negative
+561fdaa41c48820ce88392d6	X	The easiest way to go if you're using the AWS SDK for Java is the TransferManager.
+  Negative
+Its uploadFileList method takes a list of files and uploads them to S3 in parallel, or uploadDirectory will upload all the files in a local directory.
+  Negative
+561fdaa41c48820ce88392d8	X	This was giving me a major head-ache, so I thought I'd post the easy solution.
+  Negative
+My issue was that when using the Java API for Amazon's S3, I could only download 50 objects before it would mysteriously time out.
+  Negative
+The code looked something like this: It would run and process everything fine for exactly 50 objects, and then time out.
+  Negative
+561fdaa41c48820ce88392d9	X	For whatever reason, the main issue is that I had declared s3 as AmazonS3Client s3.
+  Negative
+It should have looked like: Just in case anyone else runs into this problem.
+  Negative
+561fdaa41c48820ce88392da	X	Hopefully while you may callling getObject to download it, you are not closing the InputStream.
+  Negative
+which is optioned by calling getObject(); you have to close InputStream after dealing with each object.
+  Negative
+more details read it : http://docs.amazonwebservices.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/s3/AmazonS3Client.html#getObject(com.amazonaws.services.s3.model.GetObjectRequest) Thanks
+561fdaa41c48820ce88392db	X	For Scala developers, here it is recursive function to execute a full scan and map of the contents of an AmazonS3 bucket using the official AWS SDK for Java To invoke the above curried map() function, simply pass the already constructed (and properly initialized) AmazonS3Client object (refer to the official AWS SDK for Java API Reference), the bucket name and the prefix name in the first parameter list.
+  Very negative
+Also pass the function f() you want to apply to map each object summary in the second parameter list.
+  Negative
+For example will return the full list of (key, owner, size) tuples in that bucket/prefix or will return the total size of its content (note the additional sum() folding function applied at the end of the expression ;-) You can combine map() with many other functions as you would normally approach by Monads in Functional Programming
+561fdaa41c48820ce88392dd	X	There's now Fake S3 as well.
+  Negative
+561fdaa41c48820ce88392de	X	+1 for Fake S3 - that was the easiest replacement in my project.
+  Negative
+Two lines of code changed and voila - we support local fileserver.
+  Negative
+License also looks good.
+  Positive
+561fdaa41c48820ce88392df	X	Is SwiftFS compatible to Amazon S3?
+  Neutral
+My code base works already with S3 and I'm looking for a solution which is compatible to S3 so that I don't need change my code.
+  Positive
+561fdaa41c48820ce88392e0	X	No, SwiftFS isn't compatible to Amazon S3, but you could take a look at my other project: RioFS github.com/skoobe/riofs which is a userspace filesystem which operates with Amazon S3 buckets.
+  Negative
+561fdaa41c48820ce88392e1	X	S3ninja does not currently provide folders.
+  Negative
+This is a deal breaker for me.
+  Negative
+561fdaa41c48820ce88392e2	X	We make distributal software that stores some data (attachments) in a) a database or b) Amazon S3.
+  Negative
+The database is used because it requires no other configuration.
+  Negative
+Amazon S3 is the better option.
+  Negative
+What we want now is a solution for customers that don't want to use Amazon S3.
+  Negative
+We can obviously just use the filesystem but this can be problematic if there are multiple web servers and the files need to be replicated; it also requires us to write extra code to handle the various permuations of problems that can happen.
+  Very negative
+What we would prefere is if there was a piece of server software that essentially replicates Amazon S3's API.
+  Negative
+That way our clients can install the server on a box; and we don't need to change any code.
+  Negative
+So ... is there any such software out there?
+  Negative
+561fdaa41c48820ce88392e3	X	This is possible via OpenStack Object Storage (code-named Swift), which is open source software for creating redundant, scalable object storage using clusters of standardized servers, specifically its recently added (optional) S3 API layer, which emulates the S3 REST API on top of Object Storage.
+  Negative
+See Configuring Object Storage with the S3 API for the official documentation - a more insightful and illustrated small tutorial regarding the entire setup is available in S3 APIs on OpenStack Swift (which builds on the more complex Installing an OpenStack Swift cluster on EC2 though).
+  Negative
+An noteworthy alternative is Ceph, which is a unified, distributed storage system designed for excellent performance, reliability and scalability - interestingly it provides all three common storage models, i.e. Object Storage, Block Storage and a File System and the RADOS Gateway provides Amazon S3 and OpenStack Swift compatible interfaces to the RADOS object store [emphasis mine], see RADOS S3 API for details on currently supported S3 API features.
+  Negative
+561fdaa41c48820ce88392e4	X	Have you looked at Cloudian?
+  Neutral
+We use it internally at our company to develop our S3 app.
+  Negative
+I'm using the Community Edition which is free for up to 10TB of storage.
+  Negative
+It's got pretty good S3 coverage or at least covers most of the stuff my app uses (I use versioning and multipart uploads so I think my app is advanced).
+  Neutral
+The version-ids and multipart ids etc that it generates are different than those you get from AWS but boto has no complaints so far.
+  Negative
+It also works with s3fs and other s3 bucket browsers that I have tried.
+  Positive
+In my opinion it's a good tool for development against the AWS S3 API and should meet your requirements.
+  Negative
+You can point your app at your local Cloudian server and then when you are ready for production you can point it back at Amazon.
+  Negative
+Your mileage may vary... Good luck.
+  Positive
+561fdaa41c48820ce88392e5	X	As it was already mentioned: you could try to use Swift as Amazon S3 alternative.
+  Negative
+Take a look at SwiftFS filesystem, it let you mount OpenStack container stored in Swift as a local filesystem.
+  Negative
+561fdaa41c48820ce88392e6	X	I recently started using Skylable for my S3 needs, it's free (GPL).
+  Negative
+Their object storage supports replication, HA and deduplication and it's fully S3 compatible.
+  Negative
+You can run their software on a single server (iron, virtual machine or container) if you don't need redundancy or you can use more nodes if you need HA.
+  Negative
+The number of replicas can be chosen per bucket, just like with Swift.
+  Negative
+I started with 2 nodes in replica 2 and added more nodes as our userbase started growing, to cope with the extra network traffic and the space requirements.
+  Positive
+Adding more nodes is really easy and can be done on a live cluster.
+  Positive
+In my experience Skylable proved to be faster and more reliable than Swift.
+  Positive
+It's written in C and OCaml, it's not interpreted.
+  Negative
+The memory footprint is really low, so I can run a node even on some cheap VPS.
+  Very negative
+Recently they announced to be working on Swift APIs, apparently their goal is to replace Swift.
+  Negative
+561fdaa41c48820ce88392e7	X	We ran into the problem of testing our S3 based code locally and actually implemented a small Java server, which emulates the S3 object API.
+  Negative
+As it might be useful to others, we setup a github repo along with a small website: http://s3ninja.net - all OpenSource under the MIT license.
+  Negative
+Being quite simple and minimalistic, this tool is perfect for testing and developement purposes.
+  Positive
+However, to use in in production, one might want to add some security (altough the AWS hashes are already verified in the API - just the GUI is completely unprotected).
+  Neutral
+Also, it doesn't do any replication or scaling.
+  Negative
+So this wouldn't be a good choice for large setups.
+  Negative
+561fdaa41c48820ce88392e9	X	Hi minjoon, EBS is not something to consider if you want to scale.
+  Negative
+Consider EBS as a pendrive, you can attach to a single host, EBS don't work as NAS or S3.
+  Negative
+561fdaa41c48820ce88392ea	X	Did you found the best solution minjoon?
+  Neutral
+I'm in the Middle of the same decision of what is a better solution.
+  Neutral
+Cheers
+561fdaa41c48820ce88392eb	X	I dont think s3fs can be used in production.
+  Negative
+561fdaa41c48820ce88392ec	X	I will be launching an application in the very near future which will, in part, require users to upload files (images) to be viewed by other members.
+  Negative
+I like the idea of S3 as it is relatively cheap and scales automatically.
+  Negative
+My problem is how I will have users upload their images to S3.
+  Positive
+It seems there are a few options.
+  Neutral
+1- Use the php REST API.
+  Neutral
+The only problem is that I can't get it to work for uploading variously scaled versions (ie thumbnails) of the same image simultaneously and uploading them directly to s3 (it works for just one image at a time this way).
+  Negative
+Overall, it just seems less flexible.
+  Neutral
+http://net.tutsplus.com/tutorials/php/how-to-use-amazon-s3-php-to-dynamically-store-and-manage-files-with-ease/ 2- The other option would be to mount an S3 bucket with s3fs.
+  Neutral
+Then just programmatically move my images into the bucket like I would with NFS.
+  Neutral
+From what I've read, it seems some people are dubious of the reliability of mounting S3.
+  Negative
+Is this true?
+  Neutral
+http://www.google.com/search?sourceid=chrome&ie=UTF-8&q=fuse+over+amazon Which method would be better for maximum reliability and speed?
+  Negative
+Would EBS be something to consider?
+  Neutral
+I would really like to have a dedicated box rather than use an EC2 instance, though...
+561fdaa41c48820ce88392ed	X	For your use case I recommend to use the S3 API directly rather than using s3fs because of performance.
+  Negative
+Remember that s3fs is just another layer on top of S3's API and it's usage of that API is not always the best one for your application.
+  Negative
+To handle the creation of thumbnails, I recommend to decouple that from the main upload process by using Amazon Simple Queue Service.
+  Negative
+That way your users will receive a response as soon as a file is uploaded without having to wait for it to be processed resulting in shorter response times.
+  Negative
+As for using EBS, that is a different scenario.
+  Positive
+EBS is just a persistent storage for and Amazon EC2 instance and it's reliability doesn't compare with S3.
+  Negative
+It's also important to remember that S3 only offers "eventual consistency" as opposed to a physical HDD on your machine or an EBS instance on EC2 so you need to code your app to handle that correctly.
+  Positive
+561fdaa41c48820ce88392ef	X	Thanks!
+  Positive
+Do you know how I could make it respond with the URL of the uploaded image with a POST or GET?
+  Negative
+561fdaa41c48820ce88392f0	X	onprogress: Called with a ProgressEvent whenever a new chunk of data is transferred.
+  Negative
+(Function)
+561fdaa41c48820ce88392f1	X	I am developing an App where users can post photos.
+  Negative
+I have the app working well using Imageshack's API where basically all you have to do is write a HTML form with a post to imageshack and then it redirects the post to a page of your choice where I then use the received information to store a location of the image in my database.
+  Negative
+My problem is I've heard bad things about Imageshack's reliability/scaleability and I want to move to Amazon's S3.
+  Negative
+Is it possible to upload a photo to S3, then get a simple response with the location of the image that I can then store in my database via PHP?
+  Negative
+Thanks, Dan.
+  Positive
+561fdaa41c48820ce88392f2	X	Yes you can, simple you can use file transfer method of phonegap use your amazone bucket path for url.
+  Negative
+if you need to upload larger files some times phonegap filetransfer may fail so you can write some native plugin (i tried video upload to amazone s3 and its succes )
+561fdaa41c48820ce88392f4	X	I am currently using S3 with the Java API to get objects and their content.
+  Negative
+I've created a Cloudfront distribution using the AWS console and I set my S3 bucket with my objects as the Bucket-origin.
+  Negative
+But I didn't notice any improvement in the download performance, and I noticed in the console window the url refers to s3: INFO: Sending Request: GET https://mybucket.s3.amazonaws.com /picture.jpg Headers: (Range: bytes=5001-1049479, Content-Type: application/x-www-form-urlencoded; charset=utf-8, ) whereas in the Getting Started guide for Cloudfront, the url should be: http://(domain name)/picture.jpg where (domain name) is specific to the Cloudfront distribution.
+  Negative
+So the Java API still is getting the file from S3 and not through cloudfront Is there anyway using the Java API for S3 to download files via Cloudfront?
+  Negative
+If not, what's the best approach I should use to get objects via cloudfront in my java program?
+  Negative
+I am still kinda new to this stuff, any help greatly appreciated!
+  Positive
+561fdaa41c48820ce88392f5	X	JAVA API for S3 can not be used for interacting with Cloudfront.
+  Negative
+If you want to download the content through cloud front distribution, you have to write your own HTTP code (which should be simple).
+  Negative
+You can also just use http://(cloud front domain name)/picture.jpg in browser and check the download speed first.
+  Negative
+561fdaa41c48820ce88392f6	X	But, you should know that it can take 24 hours or more for changes in S3 to be active.
+  Negative
+If you cannot open the stream, the other way is to use getObject(bucketName, key) method.
+  Negative
+561fdaa41c48820ce88392f8	X	Why not use the sdk if it works?
+  Negative
+561fdaa41c48820ce88392f9	X	I'm hoping to put it into an SSIS script task
+561fdaa41c48820ce88392fa	X	Thanks for your suggestion.
+  Negative
+I made the modification but unfortunately it still doesn't work.
+  Negative
+561fdaa41c48820ce88392fb	X	Is the 403 message returning an error that gives you the string to sign and tells you the signature does not match, or no?
+  Negative
+What does the error say?
+  Neutral
+(in the response body)
+561fdaa41c48820ce88392fc	X	The error message is stating that the signature does not match: <Error><Code>SignatureDoesNotMatch</Code><Message>The request signature we calculated does not match the signature you provided.
+  Very negative
+Check your key and signing method.
+  Neutral
+</Message>
+561fdaa41c48820ce88392fd	X	I'm trying to get some code working to fetch a file from S3 using the REST API via C#.
+  Negative
+I've seen other people doing similar things but for some reason I keep getting a 403 error.
+  Negative
+I've tried to do the same thing with the AWS SDK for .
+  Negative
+Net and it works so I assume it's the way I'm creating the authorization header.
+  Negative
+Is anyone able to shed any light on this please?
+  Positive
+561fdaa41c48820ce88392fe	X	I don't know if this is the only problem, but it looks like a definite problem: x-amz-date is the header that supercedes the Date: header in the HTTP request itself, but in the string to sign, you just put the date, without "x-amz-date:" or anything in front of it, according to the examples: http://docs.aws.amazon.com/AmazonS3/latest/dev/RESTAuthentication.html#RESTAuthenticationRequestCanonicalization There is only one correct signature that can be generated for a request.
+  Very negative
+S3 is going to generate that signature, and compare it to the one you sent, so there's not a single byte of room for error in the string-to-sign.
+  Positive
+561fdaa41c48820ce88392ff	X	I tested your code, it works!
+  Positive
+you just need an extra \n plus change http to https and you're done.
+  Negative
+Amazon Rest API don't have a good documentation, the lack of examples makes everyone go to the SDK instead.
+  Negative
+561fdaa41c48820ce8839301	X	I want to associate a bucket in X account that is created by account Y Account Y has given read and write permissons to X on the bucket via the Email ID This was done using S3Fox - however when I log into X account I see no way to associate the external bucket.
+  Negative
+I tried entering the bucket name as usual but didnt work So I would like to code my own association via php and rest but cant find the call in the API docs - can someone send me a link or example code on how to create an external bucket in account X Thanks
+561fdaa41c48820ce8839302	X	Account X has to configure bucket from Y as "external bucket".
+  Negative
+but it is worse.
+  Negative
+the external bucket feature depends on the client software X uses.
+  Neutral
+so the information on wich buckets X listen to is stored at X`s client not at S3.
+  Negative
+X have to use a s3 client wich supports external buckets.
+  Negative
+Martin
+561fdaa41c48820ce8839304	X	I am using the correct secret and access key.
+  Neutral
+.
+  Neutral
+as well as I have the permission for my user to access the s3 bucket, because I am able to upload the file using php and java with same credential.
+  Negative
+.
+  Neutral
+But for resume and pause I need the REST API in php.
+  Negative
+.
+  Neutral
+so i am running the rest api code and still i am getting the signaturedoes not match error.
+  Negative
+.
+  Neutral
+561fdaa41c48820ce8839305	X	I've been trying to get this to work for 1 week but always I am getting the same error.
+  Negative
+I also tried to debug the Signature function but I dnt where is the exact problem.
+  Negative
+.
+  Neutral
+I want to upload the file with progress bar as well as want to add the resume and pause functionality in REST-PHP.
+  Negative
+I am following the below link a :- http://www.anyexample.com/programming/php/uploading_files_to_amazon_s3_with_rest_api.xml Please provide me any proper solution.
+  Negative
+I am getting this response:- HTTP/1.1 403 Forbidden x-amz-request-id: 3B621260770DE679 x-amz-id-2: vuB+qHCRxq6CdRKIoso82GXO1O0gQNDEs5rLi3my/YiD535nyZQ6Ls64jZ5hB2KW Content-Type: application/xml Transfer-Encoding: chunked Date: Thu, 11 Dec 2014 09:01:52 GMT Connection: close Server: AmazonS3 3ef SignatureDoesNotMatchThe request signature we calculated does not match the signature you provided.
+  Very negative
+Check your key and signing method.AKIAJA6EQQ475TUGTSEQPUT image/jpeg Thu, 11 Dec 2014 09:01:52 +0000 x-amz-acl:public-read /s3.regionname.amazonaws.com/bucket-name/Desss.
+  Negative
+jpgsdpF9q1WTYzHuLuytn7Dv+3xdIY=50 55 54 0a 0a 69 6d 61 67 65 2f 6a 70 65 67 0a 54 68 75 2c 20 31 31 20 44 65 63 20 32 30 31 34 20 30 39 3a 30 31 3a 35 32 20 2b 30 30 30 30 0a 78 2d 61 6d 7a 2d 61 63 6c 3a 70 75 62 6c 69 63 2d 72 65 61 64 0a 2f 73 33 2e 65 75 2d 77 65 73 74 2d 32 2e 61 6d 61 7a 6f 6e 61 77 73 2e 63 6f 6d 2f 6e 61 6e 6f 68 65 61 6c 2d 69 62 6d 2f 44 65 73 73 73 2e 6a 70 673B621260770DE679vuB+qHCRxq6CdRKIoso82GXO1O0gQNDEs5rLi3my/YiD535nyZQ6Ls64jZ5hB2KW 0
+561fdaa41c48820ce8839306	X	I have seen that sort of error message when I'm using an invalid secret key and access key OR my permissions for my user aren't set up for the service I am trying to access.
+  Very negative
+A benefit of using the latest version of the SDK is that you will write less low level code and the error messages will probably be more helpful in identifying your issue.
+  Negative
+561fdaa41c48820ce8839308	X	possible duplicate of Is there an API for Amazon Cloud (Drive and Player)?
+  Negative
+561fdaa41c48820ce8839309	X	My App need to access user Amazon Cloud Drive Details.
+  Negative
+So that Through My App user can Login, Download, Upload and Delete etc Like There is API For Google Drive And Box.
+  Negative
+I get one Sample on Link But it is not What I Actually Need.
+  Negative
+Any response would be much appreciated.I have Also read this Link1 and Link2.
+  Negative
+And There is one Question is-there-an-api-for-amazon-cloud-drive-and-player.
+  Positive
+But There is also nothing which My App need And my need is api for Android not other platform.
+  Negative
+561fdaa41c48820ce883930a	X	there is a Cloud Drive API available - https://developer.amazon.com/public/apis/experience/cloud-drive - not sure if it gives you exactly what you need
+561fdaa41c48820ce883930c	X	Within my research I came across many different sources, but somehow I fail to see, which side is generating the private API-key and how is the other side getting hold of it.
+  Negative
+Many people recommend Amazon S3 Restful API as the role model, hence if I understand that, I could create something similar for my own purposes.
+  Positive
+Amazon's S3 REST API.
+  Neutral
+e.g. this example here explains the process very nicely, however it fails to explain, which side is generating the API-key?
+  Negative
+So upon user signup, is it the service side that is generating the private API-key and assigns it to the user id in database?
+  Negative
+If this is the case though, the client needs to know the API key in order to create the signature for each request, so that the service can actually verify it.
+  Negative
+So how do both sides get hold of the private API key?
+  Neutral
+In my case I would have a iPhone app and a AngularJS web app as my clients talking to the RESTful API service.
+  Negative
+Many Thanks,
+561fdaa41c48820ce883930d	X	First, you don't want give out keys to your clients.
+  Negative
+In general, that's a security nightmare.
+  Negative
+(Also, key creation can take some hours to propagate.
+  Negative
+And you'll have to manage the permissions for each key, etc.) So all the signing is done by your server, and your key doesn't leave your server.
+  Negative
+You want your server to have the S3 key, but only return signed links that will give the client the power to do something (GET a particular file, or PUT a file).
+  Negative
+It's a bit like the mother-may-I game: The client asks you for a "S3 signed link", then it can talk to S3 to do one thing.
+  Positive
+Since your server is doing a trivial amount of work (checking request is authorized, then returning a signed URL), you will be able to scale pretty well.
+  Neutral
+For some things, like "list files" or "delete a file", it might be better for your server to call S3 (i.e. making a web request to S3 within the web request from the client) and return the results to the client (instead of messing with signed links).
+  Negative
+But if you do this, you may run into problems when scaling -- unless you are using the right technologies.
+  Negative
+(I.e. you want an evented server like node.js) Note that for a PUT request, the signed link must specify a lot of stuff ahead of time (like the file type, etc).
+  Negative
+You have to read the AWS spec carefully.
+  Neutral
+Be careful of the Confused Deputy problem.
+  Negative
+Your code will have one key that can see all user's files, so you are responsible for the security between users.
+  Neutral
+561fdaa41c48820ce883930f	X	Thanks for the answer.
+  Neutral
+I was hoping to learn how to do these operations with the REST API though.
+  Negative
+I only need one of the AWS services (S3), and only a couple of it's functions, so it seems overkill to bring in the entire AWS SDK.
+  Very negative
+Also multiple developers are working on this project and I want to avoid complications caused by plugins and getting everyone's workspaces running identically.
+  Negative
+Thanks for the tip on IAM.
+  Neutral
+I've noticed the S3 Management Console lets you get into a property page where you can set permissions and bucket policies.
+  Negative
+Is this essentially the same functionality?
+  Neutral
+561fdaa41c48820ce8839310	X	I'm building a project that will use Amazon S3 to store documents.
+  Negative
+In particular there are two apps: ...so the public app should only have 'write' permission, and the admin tool 'read' and 'list' permissions.
+  Negative
+The coding for this project will be done with ASP.NET and C#, and the preference is to use S3's REST API.
+  Negative
+This use case (uploading, listing and downloading documents) seems pretty basic, but I haven't had much luck finding simple examples.
+  Negative
+Can some you suggest some links?
+  Neutral
+561fdaa41c48820ce8839311	X	If you install the AWS SDK for .
+  Negative
+NET from http://aws.amazon.com/sdkfornet it will also put down a sample S3 application at C:\Program Files (x86)\AWS SDK for .
+  Negative
+NET\Samples\AmazonS3Sample\AmazonS3Sample that will show the basic CRUD operations for S3.
+  Negative
+As far as permissions go you should take a look at Identity and Access Management with AWS, http://aws.amazon.com/iam/.
+  Negative
+Using this service you can create different users with profiles that restrict access.
+  Positive
+So you could create one user for your public application that only has write access and even restrict write to a specific S3 bucket.
+  Negative
+Then create another user for admin application that has more admin permissions.
+  Neutral
+561fdaa41c48820ce8839313	X	I want to enhance my sites loading speed, so I use http://gtmetrix.com/, to check what I could improve.
+  Very negative
+One of the lowest rating I get for "Leverage browser caching".
+  Negative
+I found, that my files (mainly images), have problem "expiration not specified".
+  Negative
+Okay, problem is clear, I thought.
+  Negative
+I start to googling and I found that amazon S3 prefer Cache-Control meta data over Expiry date (I lost this link, now I think maybe I misunderstood something).
+  Negative
+Anyway, I start looking for how to add cache-control meta to S3 object.
+  Neutral
+I found this page: http://www.bucketexplorer.com/documentation/amazon-s3--how-to-set-cache-control-header-for-s3-object.html I learned, that I must add string to my PUT query.
+  Negative
+x-amz-meta-Cache-Control : max-age= <value in seconds> //(there is no need space between equal sign and digits(I made a mistake here)).
+  Negative
+I use construction: Cache-control:max-age=1296000 and it work okay.
+  Negative
+After that I read https://developers.google.com/speed/docs/best-practices/caching This article told me: 1) "Set Expires to a minimum of one month, and preferably up to one year, in the future."
+  Neutral
+2) "We prefer Expires over Cache-Control: max-age because it is is more widely supported."
+  Negative
+(in Recommendations topic).
+  Neutral
+So, I start to look way to set Expiry date to S3 object.
+  Negative
+I found this: http://www.bucketexplorer.com/documentation/amazon-s3--set-object-expiration-on-amazon-s3-objects-put-get-delete-bucket-lifecycle.html And what I found: "Using Amazon S3 Object Lifecycle Management , you can define the Object Expiration on Amazon S3 Objects .
+  Negative
+Once the Lifecycle defined for the S3 Object expires, Amazon S3 will delete such Objects.
+  Negative
+So, when you want to keep your data on S3 for a limited time only and you want it to be deleted automatically by Amazon S3, you can set Object Expiration."
+  Negative
+I don't want to delete my files from S3.
+  Negative
+I just want add cache meta for maximum cache time or/and file expiry time.
+  Negative
+I completely confused with this.
+  Negative
+Can somebody explain what I must use: object expiration or cache-control?
+  Neutral
+561fdaa41c48820ce8839314	X	Your files won't be deleted, just not cached after the expiration date.
+  Negative
+The Amazon docs say: After the expiration date and time in the Expires header passes, CloudFront gets the object again from the origin server every time an edge location receives a request for the object.
+  Negative
+We recommend that you use the Cache-Control max-age directive instead of the Expires header field to control object caching.
+  Negative
+If you specify values both for Cache-Control max-age and for Expires, CloudFront uses only the value of max-age.
+  Negative
+561fdaa41c48820ce8839315	X	"Amazon S3 Object Lifecycle Management" flushs some objects from your bucket based on a rule you can define.
+  Negative
+It's only about storage.
+  Neutral
+What you want to do is set the Expires header of the HTTP request as you set the Cache-Control header.
+  Negative
+It works the same: you juste have to add this header to your PUT query.
+  Positive
+Expires doesn't work as Cache-Control: Expires gives a date.
+  Negative
+For instance: Sat, 31 Jan 2013 23:59:59 GMT You may read this: https://web.archive.org/web/20130531222309/http://www.newvem.com/how-to-add-caching-headers-to-your-objects-using-amazon-s3/
+561fdaa41c48820ce8839317	X	Did you take a look at APIs for S3 Lifecycle Configuration?
+  Negative
+I have done it using Python boto.
+  Positive
+Not sure about PHP.
+  Neutral
+561fdaa41c48820ce8839318	X	This question gives the impression that what you are in need of, first, is a more thorough understanding of how S3's Glacier integration actually works at cconceptual level... manually migrating to Glacier is not a thing, and when files are restored to S3 from Glacier, that's temporary; they are also still stored in Glacier, not moved back to S3.
+  Negative
+561fdaa41c48820ce8839319	X	I am creating a PHP based web application using Amazon's S3 and glacier services.
+  Negative
+Now I want to give my site users a feature that they can choose any file and make it archive (means move file from S3 to Glacier) and unarchive (means move file from Glacier to S3).
+  Negative
+I have done some research and didn't find any possible way using Amazon's API.
+  Negative
+PROBLEM How can I move files between S3 and glacier using API?
+  Negative
+561fdaa41c48820ce883931a	X	You can use the API to define lifecycle rules that archive files from Amazon S3 to Amazon Glacier and you can use the API to retrieve a temporary copy of files archived to Glacier.
+  Negative
+However, you cannot use the API to tell Amazon S3 to move specific files into Glacier.
+  Neutral
+There are two ways to use Amazon Glacier: Connecting directly via the Glacier API allows you to store archives for long-term storage, often used as a replacement for Tape.
+  Negative
+Data stored via the Glacier API must also be retrieved via the Glacier API.
+  Negative
+This is typically done with normal enterprise backup software or even light-weight products such as Cloudberry Backup (Windows) or Arq (Mac).
+  Negative
+Using Amazon S3 lifecycle rules allows you to store data in Amazon S3, then define rules that determine when data should be archived to Glacier for long-term storage.
+  Negative
+For example, data could be archived 90 days after creation.
+  Negative
+The data transfer is governed by the lifecycle rules, which operate on a daily batch basis.
+  Negative
+The rules can be set via the putBucketLifecycle API call (available in the PHP SDK), but this only defines the rules -- it is not possible to make an API call that tells S3 to archive specific files to Glacier.
+  Negative
+Amazon S3 has a RestoreObject API call (available in the PHP SDK) to restore a temporary copy of data archived from Glacier back into S3.
+  Negative
+Please note that restoring data from Glacier takes 3-5 hours.
+  Negative
+561fdaa41c48820ce883931b	X	You could use the Glacier API to upload a file to a Glacier vault, but I don't recommend it.
+  Negative
+The previous version of our backup app did that.
+  Neutral
+When you upload a file it gets a randomly-assigned name.
+  Positive
+You can add put your filename in the metadata of the file, but if you want a list of what's in the Glacier vault you have to query and then wait 3-5 hours for the list.
+  Negative
+Lifecycle policies are the other way to use Glacier.
+  Negative
+The current version of Arq uses them because each object still looks like an S3 object (no random object names, no delays in getting object lists), but the object contents are in Glacier storage.
+  Negative
+The only difference is that getting the object contents is a 2-step process: you have to make an API call to request that the object be made downloadable; when it's ready, you can download it.
+  Negative
+Also there's a "peak hourly request fee" that comes into play if you request objects be made downloadable at too fast a rate.
+  Negative
+Amazon Glacier pricing is complex.
+  Positive
+Once an object is "Glacier storage class" there's no way to change it back to "Standard storage class".
+  Negative
+You have to make a copy of the object that's "Standard storage class" and delete the Glacier object.
+  Negative
+So maybe a simple solution to your problem is:
+561fdaa41c48820ce883931d	X	I have a lots of documents stored on Amazon S3.
+  Negative
+My questions are: Does Amazon provide any services/APIs using which I can index the contents of the document and search them (full text indexing and searching)?
+  Negative
+If it does could someone please point me to any link in the documentation.
+  Negative
+If it does not then could this be achieved with Lucene and Zend Framework?
+  Negative
+Have any one of you implemented this?
+  Neutral
+Can I get some pointers?
+  Neutral
+UPDATE: I do not intend to save my index on Amazon S3 rather I am looking forward to indexing the contents of the documents on S3 and serving them based on a search.
+  Negative
+561fdaa41c48820ce883931e	X	You can see this question, or this blog post if you want to do pure lucene, or you can use Solr, which is probably easier.
+  Negative
+See also this post.
+  Positive
+Zend has a PHP port of Lucene, which ties in very well.
+  Positive
+You can look at the Zend documentation for how to use it.
+  Neutral
+561fdaa41c48820ce8839320	X	What about subdomains?
+  Neutral
+bucket.domain.tld -> Your S3 Bucket.
+  Neutral
+domain.tld -> Heroku.
+  Neutral
+Or is this against the same origin policy?
+  Neutral
+561fdaa41c48820ce8839321	X	Same Origin Policy also applies for subdomains I am afraid.
+  Negative
+I considering to go with some kind of CORS implementation now I guess.
+  Neutral
+561fdaa41c48820ce8839322	X	you can use JSONP for a lot of stuff.
+  Negative
+I've been able to use it with cross domains in the past.
+  Positive
+561fdaa41c48820ce8839323	X	Thanks, but JSONP is not really a viable option as well.
+  Negative
+It has some security concerns and only supports GET requests.
+  Negative
+561fdaa41c48820ce8839324	X	Thanks for the reply.
+  Neutral
+As of now my approach already kind of changed and I don't need to apply the above anymore.
+  Negative
+561fdaa41c48820ce8839325	X	I want to build a web app where frontend (static) and backend (API) are, except for sharing the same domain, completely seperated.
+  Negative
+Usually I would consider this to be no problem, but I have some special requirements: The frontend app will be a single page Javascript application (with a base template, lets call it index.html) and populate the content from the API via AJAX.
+  Negative
+Since I don't want to implement CORS for the API yet and would like to follow the same-origin policy I want that both, the API and the files on S3 (the bucket), are sharing the same domain in some way.
+  Very negative
+I also don't want to the Django's flatpages app or render the index.html through Django at all.
+  Negative
+I scanned Google and stackoverflow, but couldn't find a adequate solution so far.
+  Negative
+As far as I read the naive way (pointing domain to the Heroku app and the S3 bucket somehow) is not possible.
+  Negative
+Some solutions I have in mind but didn't find sources to: Did anybody tried something like this before and can point me in the right direction?
+  Negative
+One addition: Later on I want to use something lile PhantomJS to make the single-page app crawlable.
+  Negative
+This output for crawlers should ideally be hosted in the S3 storage as well.
+  Negative
+561fdaa41c48820ce8839326	X	That is not possible with your current stack.
+  Negative
+Your Heroku application and your S3 bucket are actually served through two different domains.
+  Negative
+The benefit of having two different domains is that you can offload your server from all static assets requests.
+  Negative
+A convoluted way to achieve what you want would be to appropriately proxy the requests through one unique domain.
+  Negative
+Luckily for you neither Heroku nor Amazon will let you do that: S3 can host your website and redirect an api folder to your-api.
+  Negative
+herokuapp.com but only with 301 redirects that don't solve CORS issues.
+  Negative
+Just tried it if you're curious: At that point the easy solution is to implement a Django middleware for cross-domain sharing.
+  Negative
+561fdaa41c48820ce8839328	X	So when we create lifecycle rules does amazon notifies our server when the file is moved to glacier and returns its ID.
+  Positive
+How can we get the ID of moved archive in the vault?
+  Neutral
+561fdaa41c48820ce8839329	X	There is no notification when objects are moved between Amazon S3 and Amazon Glacier due to lifecycle rules.
+  Negative
+The Storage Class of the Amazon S3 object is changed to "Glacier", which indicates that the content has been moved out of S3 and is available from Glacier (eg via the "Initiate Restore" command).
+  Negative
+The object remains in S3 (except for its contents), so it retains its existing key name (which is its ID).
+  Negative
+You cannot directly access data moved from S3 to Glacier -- you must restore it to S3 and then access it from S3.
+  Negative
+561fdaa41c48820ce883932a	X	I am developing an application using Amazon S3 and glacier for file storing.
+  Negative
+The requirement is that I want to move the files from S3 to glacier and when needed from glacier back to S3.
+  Negative
+My question is that Is it really possible with their PHP API or not?
+  Neutral
+561fdaa41c48820ce883932b	X	You can use the API to define lifecycle rules that archive files from Amazon S3 to Amazon Glacier and you can use the API to retrieve a temporary copy of files archived to Glacier.
+  Negative
+However, you cannot use the API to tell Amazon S3 to move specific files into Glacier.
+  Neutral
+There are two ways to use Amazon Glacier: Connecting directly via the Glacier API allows you to store archives for long-term storage, often used as a replacement for Tape.
+  Negative
+Data stored via the Glacier API must also be retrieved via the Glacier API.
+  Negative
+This is typically done with normal enterprise backup software or even light-weight products such as Cloudberry Backup (Windows) or Arq (Mac).
+  Negative
+Using Amazon S3 lifecycle rules allows you to store data in Amazon S3, then define rules that determine when data should be archived to Glacier for long-term storage.
+  Negative
+For example, data could be archived 90 days after creation.
+  Negative
+The data transfer is governed by the lifecycle rules, which operate on a daily batch basis.
+  Negative
+The rules can be set via the putBucketLifecycle API call (available in the PHP SDK), but this only defines the rules -- it is not possible to make an API call that tells S3 to archive specific files to Glacier.
+  Negative
+Amazon S3 has a RestoreObject API call (available in the PHP SDK) to restore a temporary copy of data archived from Glacier back into S3.
+  Negative
+Please note that restoring data from Glacier takes 3-5 hours.
+  Negative
+561fdaa41c48820ce883932d	X	Never quite looked at it this way, but you do make sense.
+  Negative
+Thanks a lot!
+  Positive
+561fdaa41c48820ce883932e	X	One more thing that I've quite liked is that some apps have started using DropBox for their storage - this means the user has to provide their DropBox credentials - which might put some users off - but it's a neat solution.
+  Negative
+561fdaa41c48820ce883932f	X	I'm having a hard time consuming the S3 API on Windows phone 7, mainly because of the lack of example for actually putting an object on S3 using the SOAP API?
+  Negative
+Where do you even put the body of the item?
+  Neutral
+As far as I know, there isn't even a field for it in the putObject method... So, how do you put an object on S3 with windows phone 7.
+  Negative
+561fdaa41c48820ce8839330	X	I do not recommend accessing the S3 API (or the Azure Storage API) direct from your phone.
+  Negative
+If you try this, then you will need to either have public PUT permissions or you will have your private storage access keys in plain view in the XAP file - it will be easy for a hacker to steal these and you will soon be paying to host PimpMyBreasts, WikiL33ked and SpamThis.
+  Negative
+Instead, you should host your own storage service where you can at least put some security checks in about what is being uploaded.
+  Negative
+If you do insist on using S3 directly, then this article covers S3 from C# including PutObject requests - http://www.codeproject.com/KB/cs/s3_ec2studio.aspx Good luck Stuart
+561fdaa41c48820ce8839331	X	I assume that you added a service reference to the Amazon service in your project: http://s3.amazonaws.com/doc/2006-03-01/AmazonS3.wsdl Once added as a service reference, you can invoke AmazonS3Client.PutObjectInlineAsync to upload an object in a S3 bucket.
+  Very negative
+The Data parameter (accepts a byte array) is what you're looking for.
+  Negative
+Recommended reading: http://timheuer.com/blog/archive/2008/07/05/access-amazon-s3-services-with-silverlight-2.aspx
+561fdaa41c48820ce8839333	X	This has been making me crazy all night.
+  Negative
+I wrote a DropBox app in PHP/MYSQL that worked perfectly, it pulls files from an Amazon S3 Bucket and sends them to users Dropbox folders.
+  Negative
+Then I changed the bucket policy on the Amazon S3 bucket to allow files to be pulled from only a handful of referrers, and signed URLS (example: /musicfile.mp3?AWSAccessKeyId=[accesskeyid]&Expires=[expires]&Signature=[signature]).
+  Neutral
+This works great for all purposes, except I learned my Dropbox functionality no longer works, it's because you pass the Dropbox API the URL of the mp3 on Amazon S3, and on Dropbox's side they pull the file in, so now that I have the bucket policy allowing only certain referrers, dropbox gets a permission denied and the API tells me it failed.
+  Very negative
+So I thought easy fix, I would simply add the ?
+  Negative
+AWSAccessKeyId= blah blah to the end of the file being passed to dropbox and all would work instantly, but, it doesn't because the file then doesn't end in an extension Dropbox recognizes so it again fails to work.
+  Very negative
+Then I thought I'd simply add the referrer from Dropbox to my bucket policy, I still have no idea what it is however and have added every variation of dropbox.com and api.dropbox with and without https, all with no luck.
+  Negative
+If anyone has any idea or solution you will seriously make my week.
+  Negative
+The absolute last thing I want to do is be forced to download the file first to my server, then send to dropbox, I really don't want to do that and I know I had this working perfectly already as it was, and it works instantly when I remove my bucket policy entirely, I just want it to work with it.
+  Negative
+561fdaa41c48820ce8839334	X	I assume, because you mention passing a URL to Dropbox, that you're using the Saver?
+  Negative
+If so, you can tell the Saver what file name to use, so give it the authorized URL and specify a filename so there's a file extension.
+  Negative
+E.g.: or, in JavaScript: When you say that "because the file then doesn't end in an extension Dropbox recognizes so it again fails to work," what do you mean, exactly?
+  Negative
+What goes wrong when the file doesn't have an extension?
+  Negative
+561fdaa41c48820ce8839335	X	When all else fails... check the logs.
+  Negative
+Turn on logging for your bucket, run some tests, wait a few minutes for a log to appear, and then examine the logs to see what the referer is.
+  Negative
+It seems a safe bet that there won't be a referer because a user agent that isn't a web browser (such as Dropbox's back-end processes) would typically not have a reason to send a referer.
+  Negative
+If it's any consolation, "securing" a bucket by constraining the referer is pretty much like not securing the bucket at all.
+  Negative
+It's extremely simple to defeat, and so it's only really effective protection against two classes of people: http://en.wikipedia.org/wiki/Referer_spoofing
+  Positive

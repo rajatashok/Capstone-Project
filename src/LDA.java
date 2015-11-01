@@ -3,7 +3,9 @@ import com.mongodb.*;
 import org.bson.types.ObjectId;
 
 import java.io.*;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -13,7 +15,7 @@ public class LDA {
     public static void main(String[] args) throws Exception {
         // Code to invoke LDA MALLET
         String l,line;
-        String[] files = new String[1];
+/*        String[] files = new String[1];
         files[0] = "/home/rajat/IdeaProjects/Capstone-Project/src/ap.txt";
 //        TopicModel.main(files);
 
@@ -80,16 +82,67 @@ public class LDA {
             System.out.println(line);
         }
         in.close();
+*/
+        /////////Process p4 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt > /home/rajat/IdeaProjects/Capstone-Project/src/outputFile.txt"});
+        ////////BufferedReader b = new BufferedReader(new InputStreamReader(p4.getErrorStream()));
+        ////////while(b.readLine()!=null) {System.out.println(b.readLine());}
 
-//        Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/stanford-corenlp-full-2015-04-20/java -cp \"*\" -mx5g edu.stanford.nlp.sentiment -file /home/rajat/IdeaProjects/Capstone-Project/OutputAmazon.txt"});
-        Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file cut -f3 /home/rajat/IdeaProjects/Capstone-Project/ap.txt > outputFile.txt"});
+        // HashMap
+        BufferedReader br = new BufferedReader(new FileReader("/home/rajat/IdeaProjects/Capstone-Project/src/ap.txt"));
+        HashSet<String> hmap2 = new HashSet<String>();
+        while ((line = br.readLine()) != null) {
+            String[] str = line.split("\t");
+            hmap2.add(str[0]);
+        }
+
+        System.out.println(hmap2);
+        br = new BufferedReader(new FileReader("/home/rajat/IdeaProjects/Capstone-Project/src/outputFile.txt"));
+        int positive=0,negative=0;
+
+        String currentKey = br.readLine().split("\t")[0];
+        while((line = br.readLine())!=null) {
+            String key = line.split("\t")[0];
+//            System.out.println("key= " + key + "  " + (positive-negative));
+            if(hmap2.contains(key)) {
+                System.out.println("Found key= " + key + "  CurrentKey=" + currentKey + "  " + (positive-negative));
+                currentKey = key;
+                positive=0;
+                negative=0;
+            }
+            if(line.indexOf("Positive")>=0) {
+                positive++;
+            }
+            else if(line.indexOf("Negative")>=0) {
+                negative++;
+            }
+        }
+
+
+//        BufferedReader br2 = new BufferedReader(new FileReader("outputdoctopics.txt"));
+//        while ((line = br.readLine()) != null) {
+//            String[] str = line.split("\t");
+//        }
+
+
 //        Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin"});
 
-//        Process p3 = new ProcessBuilder(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin"}).start();
-//        in = new BufferedReader(new OutputStreamReader(p3.getOutputStream()) );
+        // Run one line at a time
+        //Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; echo " + "Thanks! How to fix this problem! - goo.gl/QTdm4" +"| java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin"});
+
+
+//        Process p4 =Runtime.getRuntime().exec(new String[]{"bash", "-c", "cut -f3 /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt"});
+//        in = new BufferedReader(new InputStreamReader(p4.getInputStream()) );
 //        while ((line = in.readLine()) != null) {
+//            Process p3 = new ProcessBuilder(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin"}).start();
+//            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(p3.getOutputStream()));
+//            out.write(line);
+//            out.flush();
+//            out.close();
+//
 //            System.out.println(line);
+
 //        }
 //        in.close();
+
     }
 }
