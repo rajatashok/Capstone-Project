@@ -2,9 +2,7 @@ import cc.mallet.examples.TopicModel;
 import com.mongodb.*;
 import org.bson.types.ObjectId;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,5 +81,15 @@ public class LDA {
         }
         in.close();
 
+//        Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "/home/rajat/Desktop/stanford-corenlp-full-2015-04-20/java -cp \"*\" -mx5g edu.stanford.nlp.sentiment -file /home/rajat/IdeaProjects/Capstone-Project/OutputAmazon.txt"});
+        Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file cut -f3 /home/rajat/IdeaProjects/Capstone-Project/ap.txt > outputFile.txt"});
+//        Process p3 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin"});
+
+//        Process p3 = new ProcessBuilder(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -stdin"}).start();
+//        in = new BufferedReader(new OutputStreamReader(p3.getOutputStream()) );
+//        while ((line = in.readLine()) != null) {
+//            System.out.println(line);
+//        }
+//        in.close();
     }
 }

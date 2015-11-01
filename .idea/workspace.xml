@@ -2,22 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61c93392-1d82-41b2-9c4d-7fdf07ffe785" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/opt.txt" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/stanford-corenlp-3.5.2.jar" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Solution/en.txt" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Solution/jsoup-1.8.3.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Solution/mallet.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Solution/mongo-java-driver-3.1.0-rc0.jar" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Solution/trove-2.0.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/output.txt" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/en.txt" afterPath="$PROJECT_DIR$/src/stopwords.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/jsoup-1.8.3.jar" afterPath="$PROJECT_DIR$/lib/jsoup-1.8.3.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/mallet.jar" afterPath="$PROJECT_DIR$/lib/mallet.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/mongo-java-driver-3.1.0-rc0.jar" afterPath="$PROJECT_DIR$/lib/mongo-java-driver-3.1.0-rc0.jar" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/trove-2.0.2.jar" afterPath="$PROJECT_DIR$/lib/trove-2.0.2.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Solution/LDA.class" afterPath="$PROJECT_DIR$/out/production/Solution/LDA.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LDA.java" afterPath="$PROJECT_DIR$/src/LDA.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Output2.html" afterPath="$PROJECT_DIR$/Output2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Solution.iml" afterPath="$PROJECT_DIR$/Solution.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/outputdoctopics.txt" afterPath="$PROJECT_DIR$/outputdoctopics.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/outputtopickeys.txt" afterPath="$PROJECT_DIR$/outputtopickeys.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web.mallet" afterPath="$PROJECT_DIR$/web.mallet" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -45,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/src/Projects.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="121" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+              <caret line="109" column="60" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,14 +47,23 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ap.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ap.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="3" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LDA.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/LDA.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18181819">
-              <caret line="72" column="74" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="74" />
+            <state vertical-scroll-proportion="0.5116279">
+              <caret line="84" column="257" selection-start-line="84" selection-start-column="257" selection-end-line="84" selection-end-column="257" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2535#2551#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,6 +74,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="outputdoctopics.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/outputdoctopics.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OutputAmazon.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/OutputAmazon.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -109,13 +132,13 @@
         <option value="$PROJECT_DIR$/mongodb" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Output2.html" />
-        <option value="$PROJECT_DIR$/src/ap2.txt" />
         <option value="$PROJECT_DIR$/src/ap.txt" />
         <option value="$PROJECT_DIR$/src/Projects.java" />
         <option value="$PROJECT_DIR$/src/en.txt" />
         <option value="$PROJECT_DIR$/src/stopwords.txt" />
         <option value="$PROJECT_DIR$/output.txt" />
         <option value="$PROJECT_DIR$/Output.html" />
+        <option value="$PROJECT_DIR$/src/ap2.txt" />
         <option value="$PROJECT_DIR$/src/LDA.java" />
       </list>
     </option>
@@ -418,8 +441,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -468,11 +491,14 @@
     <property name="FullScreen" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="restartRequiresConfirmation" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -676,7 +702,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -690,11 +716,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31635803" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24940239" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16175298" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3595679" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29012346" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -723,19 +749,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ap.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="69" selection-start-line="6" selection-start-column="69" selection-end-line="6" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Output.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="356" column="24" selection-start-line="356" selection-start-column="24" selection-end-line="356" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -743,7 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -751,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2833" column="0" selection-start-line="2833" selection-start-column="0" selection-end-line="2833" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -996,13 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/OutputAmazon.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1031,13 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ap2.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1828" column="45" selection-start-line="1828" selection-start-column="45" selection-end-line="1828" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mongodb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.5185186">
@@ -1049,7 +1050,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="32" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1057,7 +1057,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2833" column="0" selection-start-line="2833" selection-start-column="0" selection-end-line="2833" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,25 +1064,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.625">
           <caret line="356" column="24" selection-start-line="356" selection-start-column="24" selection-end-line="356" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ap.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="62" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Projects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1091,6 +1071,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="528" column="5" selection-start-line="528" selection-start-column="5" selection-end-line="528" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OutputAmazon.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/outputdoctopics.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1103,13 +1099,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LDA.java">
+    <entry file="file://$PROJECT_DIR$/src/Projects.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18181819">
-          <caret line="72" column="74" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="109" column="60" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2535#2551#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ap2.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="12.755611">
+          <caret line="2231" column="49" selection-start-line="2231" selection-start-column="49" selection-end-line="2231" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ap.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LDA.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5116279">
+          <caret line="84" column="257" selection-start-line="84" selection-start-column="257" selection-end-line="84" selection-end-column="257" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
