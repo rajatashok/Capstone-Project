@@ -99,18 +99,54 @@ public class LDA {
         br = new BufferedReader(new FileReader("/home/rajat/IdeaProjects/Capstone-Project/src/outputFile.txt"));
         int positive=0,negative=0;
 
+
+        MongoClient mongoClient = new MongoClient("localhost");
+        DB db = mongoClient.getDB("local");
+        DBCollection collection = db.getCollection("users");
+
         String currentKey = br.readLine().split("\t")[0];
         while((line = br.readLine())!=null) {
             String key = line.split("\t")[0];
+
 //            System.out.println("key= " + key + "  " + (positive-negative));
             if(hmap2.contains(key)) {
-                System.out.println("Found key= " + key + "  CurrentKey=" + currentKey + "  " + (positive-negative));
+//                System.out.println("Found key= " + key + "  CurrentKey=" + currentKey + "  " + (positive-negative));
+
+                int sentiment=0;
+                if(positive-negative<-1) {
+                    sentiment=-2;
+                }
+                else if(positive-negative<0 && positive-negative>=-1) {
+                    sentiment=-1;
+                }
+                else if(positive-negative==0) {
+                    sentiment=0;
+                }
+                else if(positive-negative>0 && positive-negative<=1) {
+                    sentiment=1;
+                }
+                else if(positive-negative>1) {
+                    sentiment=2;
+                }
+
+                BasicDBObject query = new BasicDBObject();
+                query.put("_id", new ObjectId(currentKey));
+                BasicDBObject update = new BasicDBObject();
+                update.put("$set", new BasicDBObject("Sentiment Score",sentiment));
+                collection.update(query, update);
+
                 currentKey = key;
                 positive=0;
                 negative=0;
             }
-            if(line.indexOf("Positive")>=0) {
+            if(line.indexOf("Very Positive")>=0) {
+                positive = positive+2;
+            }
+            else if(line.indexOf("Positive")>=0) {
                 positive++;
+            }
+            else if(line.indexOf("Very Negative")>=0) {
+                negative = negative+2;
             }
             else if(line.indexOf("Negative")>=0) {
                 negative++;
