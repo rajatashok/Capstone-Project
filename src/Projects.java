@@ -46,14 +46,11 @@ public class Projects {
 
             for (int i = 0; i < urlList.size(); i++) {
                 ArrayList datePosted = new ArrayList();
+                ArrayList upvoteCount = new ArrayList();
                 ArrayList usernames = new ArrayList();
                 ArrayList usernamesLink = new ArrayList();
-                ArrayList userReputation = new ArrayList();
-                ArrayList goldBadges = new ArrayList();
-                ArrayList silverBadges = new ArrayList();
-                ArrayList bronzeBadges = new ArrayList();
-                ArrayList topRank = new ArrayList();
                 ArrayList posts = new ArrayList();
+                ArrayList owner = new ArrayList();
 
 //                        Document doc = Jsoup.connect("http://stackoverflow.com/questions/4490439/facebook-api-search").timeout(0).followRedirects(false).userAgent("Mozilla").get();
 //                        Document doc = Jsoup.connect("http://stackoverflow.com/questions/1544739/google-maps-api-v3-how-to-remove-all-markers").timeout(0).followRedirects(false).userAgent("Mozilla").get();
@@ -69,6 +66,8 @@ public class Projects {
                 // For comments
                 for (Element element : details) {
                     usernames.add(element.select("a.comment-user").text());
+                    upvoteCount.add(0);
+                    owner.add(0);
                     datePosted.add(element.select("span.relativetime-clean").attr("title"));
                     posts.add(element.select("span.comment-copy").text());
                     String userurl = "";
@@ -82,6 +81,7 @@ public class Projects {
                     }
 //                    System.out.println(userurl + "  x" + element.select("a.comment-user").text()+ "x   " + element.select("span.relativetime-clean").attr("title")+ "   " + element.select("span.comment-copy").text());
                 }
+
                 // For posts
                 details = doc.select("td.post-signature:has(div.user-details:has(a))");
                 for (Element element : details) {
@@ -90,12 +90,17 @@ public class Projects {
                     if (element.select("div.user-action-time a").text().length()>=6 && element.select("div.user-action-time a").text().substring(0, 6).equals("edited")) {
                         continue;
                     }
-                    System.out.println(element.select("div.user-action-time").text());
+                    System.out.println("div.user-action-time=  " + element.select("div.user-action-time").text());
 
+                    // Setting Owner of post
                     if(element.select("div.user-action-time").text().length()>=5 && element.select("div.user-action-time").text().substring(0, 5).equals("asked")) {
+                        owner.add(1);
                         System.out.println("Owner= " + element.select("div.user-details a").text());
                         System.out.println("Href= http://stackoverflow.com/" + element.select("div.user-details a").attr("href"));
 
+                    }
+                    else {
+                        owner.add(0);
                     }
                     if(element.select("div.user-details a").text().indexOf("users")!=-1 && element.select("div.user-details a").text().indexOf("revs")!=-1) {
                         Document userRevisionsdoc = Jsoup.connect("http://stackoverflow.com"+element.select("a").attr("href")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
@@ -110,10 +115,16 @@ public class Projects {
                     datePosted.add(element.select("div.user-action-time span").attr("title"));
                     //  System.out.println(element.select("div.user-details a").text() + "    " + element.select("div.user-action-time span").attr("title"));
                 }
+                // Adding Post text
                 Elements text = doc.select("div.post-text");
                 for (Element div : text) {
                     Elements p = div.select("p");
                     posts.add(p.text());
+                }
+                // Adding upvotes for Posts
+                Elements upvote = doc.select("span.vote-count-post");
+                for (Element element : upvote) {
+                    upvoteCount.add(element.text());
                 }
 
                 // Database connection and insert
@@ -136,21 +147,34 @@ public class Projects {
 //                    writer2.close();
                     userDet[0] = (userDetailsDoc.select("div.badges").select("span.badge1-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge1-alternate").select("span.badgecount").text();
                     userDet[1] = (userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text();
-                    userDet[2] = (userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text();
+                    userDet[2] = (userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text();
                     userDet[3] = (userDetailsDoc.select("div.reputation").text().split(" ")[0]).length()==0? "0": userDetailsDoc.select("div.reputation").text().split(" ")[0].replace(",","");
                     userDet[4] = (userDetailsDoc.select("span.top-badge b").text()).length()==0? "100" : userDetailsDoc.select("span.top-badge b").text().replace("%","");
 
-                    System.out.println(usernamesLink.get(j) + "   x" + usernames.get(j) + "  Gold= " + userDet[0] + "  Silver= " + userDet[1] + "  Bronze= " + userDet[2] + "  Reputation= " + userDet[3] + "  topRank= " + userDet[4]);
+                    System.out.println(usernamesLink.get(j) + "  " + usernames.get(j) + " upvotes= " + upvoteCount.get(j) + "  Gold= " + userDet[0] + "  Silver= " + userDet[1] + "  Bronze= " + userDet[2] + "  Reputation= " + userDet[3] + "  topRank= " + userDet[4]);
+                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("upvotes", upvoteCount.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j)).append("goldBadges",userDet[0]).append("silverBadges",userDet[1]).append("bronzeBadges",userDet[2]).append("reputation",userDet[3]).append("top%rank",userDet[4]).append("owner",owner.get(j));
+                    BasicDBObject update = new BasicDBObject();
+                    update.put("$set", document);
+
+                    BasicDBObject query = new BasicDBObject("posts", posts.get(j));
+
+                    BasicDBObject upsert = new BasicDBObject();
+                    upsert.put("$upsert", true);
+
+                    collection.update(query, update, true, false);
+//                    collection.insert(document);
+
                 }
 
-                for (int j = 0; j < usernames.size(); j++) {
-                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j)).append("upvotes",4);
+//                for (int j = 0; j < usernames.size(); j++) {
+//                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("upvotes", upvoteCount.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j)).append("reputation",userReputation.get(j)).append("goldBadges",userDet[0]);
 //                                    System.out.println(datePosted.get(j) + "x" + usernames.get(j) + "x" );
 //                    collection.insert(document);
-                }
-                break;
+//                }
+//                break;
             }
 //        }
+
 
         MongoClient mongoClient = new MongoClient("localhost");
         List<String> databases = mongoClient.getDatabaseNames();
