@@ -19,17 +19,19 @@ import cc.mallet.topics.*;
 
 public class Projects {
     public static void main(String[] args) throws Exception {
-        HashMap<String,String[]> hashmap = new HashMap<String,String[]>();
+        HashMap<String, String[]> hashmap = new HashMap<String, String[]>();
 
         // Getting List of Popular APIs
         Document programmableWeb = Jsoup.connect("http://www.programmableweb.com/category/all/apis?order=field_popularity").timeout(0).userAgent("Mozilla").get();
         Elements apiList = programmableWeb.getElementsByClass("views-field-title");
 //        for (Element apis : apiList.select("a")) {
-            //   System.out.println(apis.text());
+        //   System.out.println(apis.text());
 
-            //  Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
+        //  Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
 //            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=" + apis.text().replace(" ","+")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
-            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=amazon+s3+api").timeout(0).userAgent("Mozilla").get();
+        for (int pagenum = 1; pagenum <= 50; pagenum++) {
+            System.out.println("Pagenum= " + pagenum);
+            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=amazon+s3+api&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
             Elements links = mainDocument.select("a[href]");
             String pattern = "^http://stackoverflow.com/questions/[0-9]+/";
 
@@ -40,9 +42,13 @@ public class Projects {
                 Matcher m = regex.matcher(src.attr("abs:href"));
                 if (m.find()) {
                     urlList.add(src.attr("abs:href"));
-                   // System.out.println(src.tagName() + "\t" + src.attr("abs:href"));
+                    // System.out.println(src.tagName() + "\t" + src.attr("abs:href"));
                 }
             }
+
+            //Page 8
+//            Title= SHA-1 in Amazon Api Authorization in Javascript
+//            Title= How do I use AWS S3 to store user uploaded pictures?
 
             for (int i = 0; i < urlList.size(); i++) {
                 ArrayList datePosted = new ArrayList();
@@ -74,7 +80,7 @@ public class Projects {
                     Elements atag = element.select("a");
                     for (Element element2 : atag) {
                         if (element2.select("a").text().equals(element.select("a.comment-user").text())) {
-                            usernamesLink.add("http://stackoverflow.com/"+element2.select("a").attr("href"));
+                            usernamesLink.add("http://stackoverflow.com" + element2.select("a").attr("href"));
 //                            userurl = element2.select("a").attr("href");
                             break;
                         }
@@ -87,31 +93,30 @@ public class Projects {
                 for (Element element : details) {
 //                    System.out.println("details.attr(\"class\")= " + details.select("div.user-action-time").text());
 
-                    if (element.select("div.user-action-time a").text().length()>=6 && element.select("div.user-action-time a").text().substring(0, 6).equals("edited")) {
+                    if (element.select("div.user-action-time a").text().length() >= 6 && element.select("div.user-action-time a").text().substring(0, 6).equals("edited")) {
                         continue;
                     }
-                    System.out.println("div.user-action-time=  " + element.select("div.user-action-time").text());
+//                    System.out.println("div.user-action-time=  " + element.select("div.user-action-time").text());
 
                     // Setting Owner of post
-                    if(element.select("div.user-action-time").text().length()>=5 && element.select("div.user-action-time").text().substring(0, 5).equals("asked")) {
+                    if (element.select("div.user-action-time").text().length() >= 5 && element.select("div.user-action-time").text().substring(0, 5).equals("asked")) {
                         owner.add(1);
-                        System.out.println("Owner= " + element.select("div.user-details a").text());
-                        System.out.println("Href= http://stackoverflow.com/" + element.select("div.user-details a").attr("href"));
+//                        System.out.println("Owner= " + element.select("div.user-details a").text());
+//                        System.out.println("Href= http://stackoverflow.com/" + element.select("div.user-details a").attr("href"));
 
-                    }
-                    else {
+                    } else {
                         owner.add(0);
                     }
-                    if(element.select("div.user-details a").text().indexOf("users")!=-1 && element.select("div.user-details a").text().indexOf("revs")!=-1) {
-                        Document userRevisionsdoc = Jsoup.connect("http://stackoverflow.com"+element.select("a").attr("href")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
+                    if (element.select("div.user-details a").text().indexOf("users") != -1 && element.select("div.user-details a").text().indexOf("revs") != -1) {
+                        Document userRevisionsdoc = Jsoup.connect("http://stackoverflow.com" + element.select("a").attr("href")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
                         datePosted.add(userRevisionsdoc.select("span.relativetime").get(0).text());
                         usernames.add(userRevisionsdoc.select("div.user-details a").get(0).text());
-                        usernamesLink.add("http://stackoverflow.com/"+ element.select("div.user-details a").attr("href"));
+                        usernamesLink.add("http://stackoverflow.com" + element.select("div.user-details a").attr("href"));
 //                        System.out.println("Href= http://stackoverflow.com/" + element.select("div.user-details a").attr("href"));
                         continue;
                     }
                     usernames.add(element.select("div.user-details a").text());
-                    usernamesLink.add("http://stackoverflow.com/"+ element.select("div.user-details a").attr("href"));
+                    usernamesLink.add("http://stackoverflow.com" + element.select("div.user-details a").attr("href"));
                     datePosted.add(element.select("div.user-action-time span").attr("title"));
                     //  System.out.println(element.select("div.user-details a").text() + "    " + element.select("div.user-action-time span").attr("title"));
                 }
@@ -140,26 +145,32 @@ public class Projects {
                 for (int j = 0; j < usernames.size(); j++) {
                     String[] userDet = new String[5];
                     Document userDetailsDoc = Jsoup.connect("" + usernamesLink.get(j)).timeout(0).followRedirects(false).userAgent("Mozilla").get();
-//                    Document userDetailsDoc = Jsoup.connect("http://stackoverflow.com//users/1037948/drzaus").timeout(0).followRedirects(false).userAgent("Mozilla").get();
+//                    Document userDetailsDoc = Jsoup.connect("http://stackoverflow.com/users/1919054/charles-engelke").timeout(0).followRedirects(false).userAgent("Mozilla").get();
 
 //                    PrintWriter writer2 = new PrintWriter("UserOutput.html", "UTF-8");
 //                    writer2.println(userDetailsDoc);
 //                    writer2.close();
-                    userDet[0] = (userDetailsDoc.select("div.badges").select("span.badge1-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge1-alternate").select("span.badgecount").text();
-                    userDet[1] = (userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text();
-                    userDet[2] = (userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text().length()==0)? "0" : userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text();
-                    userDet[3] = (userDetailsDoc.select("div.reputation").text().split(" ")[0]).length()==0? "0": userDetailsDoc.select("div.reputation").text().split(" ")[0].replace(",","");
-                    userDet[4] = (userDetailsDoc.select("span.top-badge b").text()).length()==0? "100" : userDetailsDoc.select("span.top-badge b").text().replace("%","");
+                    userDet[0] = (userDetailsDoc.select("div.badges").select("span.badge1-alternate").select("span.badgecount").text().length() == 0) ? "0" : userDetailsDoc.select("div.badges").select("span.badge1-alternate").select("span.badgecount").text();
+                    userDet[1] = (userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text().length() == 0) ? "0" : userDetailsDoc.select("div.badges").select("span.badge2-alternate").select("span.badgecount").text();
+                    userDet[2] = (userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text().length() == 0) ? "0" : userDetailsDoc.select("div.badges").select("span.badge3-alternate").select("span.badgecount").text();
+                    userDet[3] = (userDetailsDoc.select("div.reputation").text().split(" ")[0]).length() == 0 ? "0" : userDetailsDoc.select("div.reputation").text().split(" ")[0].replace(",", "");
+                    userDet[4] = ((userDetailsDoc.select("div.user-card").select("span.top-badge b").text()).length() == 0) ? "100" : userDetailsDoc.select("span.top-badge b").text().replace("%", "");
 
-                    System.out.println(usernamesLink.get(j) + "  " + usernames.get(j) + " upvotes= " + upvoteCount.get(j) + "  Gold= " + userDet[0] + "  Silver= " + userDet[1] + "  Bronze= " + userDet[2] + "  Reputation= " + userDet[3] + "  topRank= " + userDet[4]);
-                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("upvotes", upvoteCount.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j)).append("goldBadges",userDet[0]).append("silverBadges",userDet[1]).append("bronzeBadges",userDet[2]).append("reputation",userDet[3]).append("top%rank",userDet[4]).append("owner",owner.get(j));
+//                    System.out.println("b= " + userDetailsDoc.select("div.user-card").select("span.top-badge b").toString());
+
+//                    System.out.println(usernamesLink.get(j) + "  " + usernames.get(j) + " upvotes= " + upvoteCount.get(j) + "  Gold= " + userDet[0] + "  Silver= " + userDet[1] + "  Bronze= " + userDet[2] + "  Reputation= " + userDet[3] + "  topRank= " + userDet[4]);
+                    BasicDBObject document = new BasicDBObject("title", title.text()).append("posts", posts.get(j)).append("upvotes", upvoteCount.get(j)).append("datePosted", datePosted.get(j)).append("user", usernames.get(j)).append("goldBadges", userDet[0]).append("silverBadges", userDet[1]).append("bronzeBadges", userDet[2]).append("reputation", userDet[3]).append("top%rank", userDet[4]).append("owner", owner.get(j));
                     BasicDBObject update = new BasicDBObject();
                     update.put("$set", document);
 
-                    BasicDBObject query = new BasicDBObject("posts", posts.get(j));
+                    BasicDBObject query = new BasicDBObject();
+                    query.put("posts", posts.get(j));
+                    query.put("title", title.text());
 
                     BasicDBObject upsert = new BasicDBObject();
                     upsert.put("$upsert", true);
+
+//                    break;
 
                     collection.update(query, update, true, false);
 //                    collection.insert(document);
@@ -173,8 +184,8 @@ public class Projects {
 //                }
 //                break;
             }
-//        }
-
+        }
+//    }
 
         MongoClient mongoClient = new MongoClient("localhost");
         List<String> databases = mongoClient.getDatabaseNames();
