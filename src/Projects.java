@@ -19,19 +19,23 @@ import cc.mallet.topics.*;
 
 public class Projects {
     public static void main(String[] args) throws Exception {
+        writeLDAInput();
+        System.exit(0);
+
         HashMap<String, String[]> hashmap = new HashMap<String, String[]>();
 
         // Getting List of Popular APIs
-        Document programmableWeb = Jsoup.connect("http://www.programmableweb.com/category/all/apis?order=field_popularity").timeout(0).userAgent("Mozilla").get();
+/*        Document programmableWeb = Jsoup.connect("http://www.programmableweb.com/category/all/apis?order=field_popularity").timeout(0).userAgent("Mozilla").get();
         Elements apiList = programmableWeb.getElementsByClass("views-field-title");
-//        for (Element apis : apiList.select("a")) {
-        //   System.out.println(apis.text());
-
+        for (Element apis : apiList.select("a")) {
+            System.out.println(apis.text());
+        }
+*/
         //  Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
 //            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=" + apis.text().replace(" ","+")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
-        for (int pagenum = 1; pagenum <= 50; pagenum++) {
+        for (int pagenum = 15; pagenum <= 20; pagenum++) {
             System.out.println("Pagenum= " + pagenum);
-            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=amazon+s3+api&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
+            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=Flickr+api&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
             Elements links = mainDocument.select("a[href]");
             String pattern = "^http://stackoverflow.com/questions/[0-9]+/";
 
@@ -45,10 +49,6 @@ public class Projects {
                     // System.out.println(src.tagName() + "\t" + src.attr("abs:href"));
                 }
             }
-
-            //Page 8
-//            Title= SHA-1 in Amazon Api Authorization in Javascript
-//            Title= How do I use AWS S3 to store user uploaded pictures?
 
             for (int i = 0; i < urlList.size(); i++) {
                 ArrayList datePosted = new ArrayList();
@@ -186,7 +186,9 @@ public class Projects {
             }
         }
 //    }
+    }
 
+    public static void writeLDAInput() throws FileNotFoundException, UnsupportedEncodingException {
         MongoClient mongoClient = new MongoClient("localhost");
         List<String> databases = mongoClient.getDatabaseNames();
         DB db = mongoClient.getDB("local");
@@ -194,19 +196,17 @@ public class Projects {
         DBObject dbObject = collection.findOne();
         List list = collection.distinct("title");
 
-
         BasicDBObject allQuery = new BasicDBObject();
         BasicDBObject fields = new BasicDBObject();
         fields.put("_id", 1);
         fields.put("posts", 1);
 
         DBCursor cursor = collection.find(allQuery, fields);
-        PrintWriter writer2 = new PrintWriter("src/ap.txt", "UTF-8");
+        PrintWriter writer2 = new PrintWriter("src/ldaInput.txt", "UTF-8");
         while (cursor.hasNext()) {
             BasicDBObject obj = (BasicDBObject) cursor.next();
             writer2.println(obj.getString("_id") + "\tX\t" + obj.getString("posts"));
         }
         writer2.close();
-
     }
 }

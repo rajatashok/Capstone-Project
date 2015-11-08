@@ -83,26 +83,26 @@ public class LDA {
         }
         in.close();
 */
-        /////////Process p4 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file /home/rajat/IdeaProjects/Capstone-Project/src/ap.txt > /home/rajat/IdeaProjects/Capstone-Project/src/outputFile.txt"});
-        ////////BufferedReader b = new BufferedReader(new InputStreamReader(p4.getErrorStream()));
-        ////////while(b.readLine()!=null) {System.out.println(b.readLine());}
-
+        Process p4 = Runtime.getRuntime().exec(new String[]{"bash", "-c", "cd /home/rajat/Desktop/stanford-corenlp-full-2015-04-20/; java -cp \"*\" -mx5g edu.stanford.nlp.sentiment.SentimentPipeline -file /home/rajat/IdeaProjects/Capstone-Project/src/ldaInput.txt > /home/rajat/IdeaProjects/Capstone-Project/src/outputFile.txt"});
+        BufferedReader b = new BufferedReader(new InputStreamReader(p4.getErrorStream()));
+        while(b.readLine()!=null) {System.out.println(b.readLine());}
+/*
         // HashMap
-        BufferedReader br = new BufferedReader(new FileReader("/home/rajat/IdeaProjects/Capstone-Project/src/ap.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("/home/rajat/IdeaProjects/Capstone-Project/src/ldaInput.txt"));
         HashSet<String> hmap2 = new HashSet<String>();
         while ((line = br.readLine()) != null) {
             String[] str = line.split("\t");
             hmap2.add(str[0]);
         }
-
-        System.out.println(hmap2);
+        System.out.println("hmap done");
+//        System.out.println(hmap2);
         br = new BufferedReader(new FileReader("/home/rajat/IdeaProjects/Capstone-Project/src/outputFile.txt"));
         int positive=0,negative=0;
 
 
         MongoClient mongoClient = new MongoClient("localhost");
         DB db = mongoClient.getDB("local");
-        DBCollection collection = db.getCollection("users");
+        DBCollection collection = db.getCollection("data");
 
         String currentKey = br.readLine().split("\t")[0];
         while((line = br.readLine())!=null) {
@@ -152,7 +152,7 @@ public class LDA {
                 negative++;
             }
         }
-
+        */
 
 //        BufferedReader br2 = new BufferedReader(new FileReader("outputdoctopics.txt"));
 //        while ((line = br.readLine()) != null) {
