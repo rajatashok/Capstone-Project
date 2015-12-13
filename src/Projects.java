@@ -19,23 +19,41 @@ import cc.mallet.topics.*;
 
 public class Projects {
     public static void main(String[] args) throws Exception {
-        writeLDAInput();
+        setWebServiceNames();
+//        writeLDAInput();
         System.exit(0);
 
         HashMap<String, String[]> hashmap = new HashMap<String, String[]>();
 
         // Getting List of Popular APIs
-/*        Document programmableWeb = Jsoup.connect("http://www.programmableweb.com/category/all/apis?order=field_popularity").timeout(0).userAgent("Mozilla").get();
+        Document programmableWeb = Jsoup.connect("http://www.programmableweb.com/category/all/apis?order=field_popularity").timeout(0).userAgent("Mozilla").get();
         Elements apiList = programmableWeb.getElementsByClass("views-field-title");
-        for (Element apis : apiList.select("a")) {
+/*        for (Element apis : apiList.select("a")) {
             System.out.println(apis.text());
         }
 */
-        //  Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
+//        System.exit(0);
+
+        // Database connection and insert
+        MongoClient mongoClient = new MongoClient("localhost");
+        List<String> databases = mongoClient.getDatabaseNames();
+        DB db = mongoClient.getDB("local");
+        DBCollection collection = db.getCollection("data");
+
+        int count = 0;
+//        for (Element apis : apiList.select("a")) {
+//            if(count<=14 || apis.text().equals("Amazon S3")) {
+//                count++;
+//                continue;
+//            }
+//            System.out.println(apis.text().replace(" ","+") + "+api");
+
+            //  Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=facebook%20api").timeout(0).userAgent("Mozilla").get();
 //            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=" + apis.text().replace(" ","+")).timeout(0).followRedirects(false).userAgent("Mozilla").get();
-        for (int pagenum = 15; pagenum <= 20; pagenum++) {
+        for (int pagenum = 1; pagenum <= 10; pagenum++) {
             System.out.println("Pagenum= " + pagenum);
-            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=Flickr+api&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
+//            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=" + apis.text().replace(" ","+") + "&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
+            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=yelp+api&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
             Elements links = mainDocument.select("a[href]");
             String pattern = "^http://stackoverflow.com/questions/[0-9]+/";
 
@@ -132,12 +150,6 @@ public class Projects {
                     upvoteCount.add(element.text());
                 }
 
-                // Database connection and insert
-                MongoClient mongoClient = new MongoClient("localhost");
-                List<String> databases = mongoClient.getDatabaseNames();
-                DB db = mongoClient.getDB("local");
-                DBCollection collection = db.getCollection("data");
-
 /*                PrintWriter writer2 = new PrintWriter("Output2.html", "UTF-8");
                 writer2.println(doc);
                 writer2.close();
@@ -183,9 +195,47 @@ public class Projects {
 //                    collection.insert(document);
 //                }
 //                break;
+//            }
+        }
+    }
+    }
+
+    public static void setWebServiceNames() throws IOException {
+        MongoClient mongoClient = new MongoClient("localhost");
+        DB db = mongoClient.getDB("local");
+        DBCollection collection = db.getCollection("data");
+
+        for (int pagenum = 1; pagenum <= 15; pagenum++) {
+            System.out.println("Pagenum= " + pagenum);
+            Document mainDocument = Jsoup.connect("http://stackoverflow.com/search?tab=relevance&pagesize=50&q=instagram+api&page=" + pagenum).timeout(0).userAgent("Mozilla").get();
+            Elements links = mainDocument.select("a[href]");
+            String pattern = "^http://stackoverflow.com/questions/[0-9]+/";
+
+            ArrayList urlList = new ArrayList();
+            // Create a Pattern object
+            Pattern regex = Pattern.compile(pattern);
+            for (Element src : links) {
+                Matcher m = regex.matcher(src.attr("abs:href"));
+                if (m.find()) {
+                    urlList.add(src.attr("abs:href"));
+                    // System.out.println(src.tagName() + "\t" + src.attr("abs:href"));
+                }
+            }
+
+            for (int i = 0; i < urlList.size(); i++) {
+                Document doc = Jsoup.connect((String) urlList.get(i)).timeout(0).followRedirects(false).userAgent("Mozilla").get();
+                // Get Title
+                Elements title = doc.select("div.container div.snippet-hidden div div h1 a.question-hyperlink");
+                System.out.println("Title= " + title.text());
+
+                BasicDBObject query = new BasicDBObject();
+                query.put("title", title.text());
+
+                BasicDBObject updateWebService = new BasicDBObject();
+                updateWebService.put("$set", new BasicDBObject("WebService", "Instagram API"));
+                collection.updateMulti(query, updateWebService);
             }
         }
-//    }
     }
 
     public static void writeLDAInput() throws FileNotFoundException, UnsupportedEncodingException {
